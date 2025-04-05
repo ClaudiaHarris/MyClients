@@ -1,0 +1,47 @@
+/* MainLayout specific styles */
+.content-container {
+  flex: 1;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Bento box layout styles */
+.client-screen-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 20px;
+  height: calc(100vh - 180px); /* Subtract navbar and footer height */
+}
+
+.client-list-container {
+  background-color: var(--medium-gray);
+  border-radius: 8px;
+  padding: 20px;
+  overflow: auto;
+}
+
+.client-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: var(--dark-gray);
+  color: var(--light-gray);
+  font-size: 0.8rem;
+}
+
+
+/* Media queries for responsive layout if needed later */
+@media (max-width: 768px) {
+  .client-screen-container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,79 @@
+/* Navbar specific styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--deep-blue);
+  padding: 0.5rem 1rem;
+  height: 60px;
+  
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.logo-image {
+  height: 60px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.logo-text {
+  color: var(--mid-teal);
+  font-size: .9rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: var(--off-white);
+  text-decoration: none;
+  padding: 0 15px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s, color 0.3s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background-color: var(--medium-gray);
+  color: var(--white);
+}
+
+.nav-link.active {
+  border-bottom: 3px solid var(--rustic-red);
+  color: var(--white);
+  font-weight: bold;
+}
+
+.user-controls {
+  display: flex;
+  align-items: center;
+}
+
+.logout-button {
+  background-color: var(--rustic-red);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #9a2e24; /* Darker shade of rustic-red */
+}

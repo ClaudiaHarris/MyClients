@@ -1,38 +1,140 @@
+/* Global styles and variables */
+:root {
+  /* GlobalTech brand colors */
+  --deep-blue: #0B0C17;
+  --rustic-red: #B4362A;
+  --egg-yellow: #FF8E04;
+  --wheat: #dcb76eff;
+  --teal: #297E6F;
+  --mid-teal: #63c7b4ff;
+  --light-teal: #B3DFD7;
+  
+  /* Additional colors for UI */
+  --dark-gray: #1E1E1E;
+  --medium-gray: #333333;
+  --light-gray: #666666;
+  --off-white: #EEEEEE;
+  --white: #FFFFFF;
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--deep-blue);
+  color: var(--white);
+}
+
+/* Global container */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+}
+
+/* Global button styles */
+button {
+  cursor: pointer;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button.primary {
+  background-color: var(--teal);
+  color: var(--white);
+}
+
+button.secondary {
+  background-color: var(--light-gray);
+  color: var(--white);
+}
+
+button.danger {
+  background-color: var(--rustic-red);
+  color: var(--white);
+}
+
+/* Global form styles */
+input, select, textarea {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--light-gray);
+  background-color: var(--dark-gray);
+  color: var(--white);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+/* Global utility classes */
+.card {
+  background-color: var(--medium-gray);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.page-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--wheat);
+}
+
+/* Temporary placeholder */
+.placeholder-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+ 
+}
+
+
+
+.bento-box-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  height: 500px;
+}
+
+.demo-box {
+  background-color: var(--medium-gray);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+  color: var(--off-white);
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.demo-inner-box {
+  background-color: var(--dark-gray);
+  border-radius: 8px;
+  width: 100%;
+  height: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

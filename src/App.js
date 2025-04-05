@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import MainLayout from "./components/layout/MainLayout";
+
+const PageTitle = () => {
+  return <h1 className="page-title">My Clients</h1>;
+};
+
+const TemporaryClientScreen = () => {
+  return (
+
+
+    <div className="placeholder-content">
+      
+      <div className="bento-box-demo">
+        <div className="demo-box">Client List</div>
+        <div className="demo-box">
+          <div className="demo-box">
+            <div className="demo-inner-box">Client Details</div>
+            <div className="demo-inner-box">Projects</div>
+          </div>
+        </div>   
+    </div>
+    </div>
+  );
+};
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MainLayout>
+        <PageTitle />
+        <TemporaryClientScreen />
+      </MainLayout>
     </div>
   );
 }
 
 export default App;
+// This is a placeholder for the temporary client screen.
