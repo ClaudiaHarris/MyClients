@@ -1,31 +1,29 @@
 import React from 'react';
 import ClientDetails from './ClientDetails';
+import ContactSection from '/ContactSection';
+import ContractsSection from './ContractsSection';
+import SalesRepSection from './SalesRepSection';
 import './ClientCard.css';
-import Button from '../../common/Button'; 
 
+const ClientCard = ({client}) => {
 
-const ClientCard = ({ client }) => {
-  const { removeClient } = useClientContext(); // Get the removeClient function from context
-
-  const handleDelete = async () => {
-    try {
-      await removeClient(client.id); // Call the removeClient function with the client's ID
-    } catch (error) {
-      console.error("Error deleting client:", error);
-    }
-  };
+  if (!client) {
+    return 
+      <div className="client-card-empty">Select a Client to view details.
+      </div>
+  }
 
   return (
     <div className="client-card">
-      <h2>{client.name}</h2>
-      <p><strong>Contact Name:</strong> {client.contactName}</p>
-      <p><strong>Lifecycle Stage:</strong> {client.lifecycleStage}</p>
-      <p><strong>Sales Rep:</strong> {client.salesRep}</p>
-      <p><strong>Office:</strong> {client.office}</p>
-      <p><strong>Email:</strong> <a href={`mailto:${client.contactEmail}`}>{client.contactEmail}</a></p>
-      <Button onClick={handleDelete} className="delete-button">Delete Client</Button>
+      <h2 className="card-title">Client Details</h2>
+      <div className="card-sections">
+        <ClientDetails client={client} />
+        <ContactSection contact={client.contact} />
+        <SalesRepSection salesRep={client.salesRep} />
+        <ContractsSection contracts={client.contracts} />
+      </div>
     </div>
   );
-}
+};
 
 export default ClientCard;
