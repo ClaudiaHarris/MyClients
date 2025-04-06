@@ -1,6 +1,6 @@
 import React from 'react';
 import ClientDetails from './ClientDetails';
-import ContactSection from '/ContactSection';
+import ContactSection from './ContactSection';
 import ContractsSection from './ContractsSection';
 import SalesRepSection from './SalesRepSection';
 import './ClientCard.css';
@@ -8,9 +8,9 @@ import './ClientCard.css';
 const ClientCard = ({client}) => {
 
   if (!client) {
-    return 
-      <div className="client-card-empty">Select a Client to view details.
-      </div>
+    return (
+      <div className="client-card-empty">Select a Client to view details.</div>
+    );
   }
 
   return (
