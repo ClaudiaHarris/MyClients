@@ -24,13 +24,6 @@ import './Modal.css';
   const modalRef = useRef(null);
 
   useEffect(() => {
-    
-    //close if click outside modal
-    const handleOutsideClick = (event) => {
-      onClose();
-      
-    };
-
     //close with escape key
     const handleEscapeKey = (event) => {
       if (event.key === 'Escape') {
@@ -40,13 +33,13 @@ import './Modal.css';
 
     //only add event listener if modal is open
     if (isOpen) {
-      document.addEventListener('mousedown', handleOutsideClick);
+      
       document.addEventListener('keydown', handleEscapeKey);
     }
 
     //clean up event listeners when modal closes
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
+      
       document.removeEventListener('keydown', handleEscapeKey);
     };
 }, [isOpen, onClose]);

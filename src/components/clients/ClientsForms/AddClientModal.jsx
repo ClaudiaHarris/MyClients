@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import Modal from '../../common/Modal';
 import Button from '../../common/Button';
 import {useClientContext} from '../../../contexts/ClientContext';
-import {validateClientForm} from './FormValidation';
+import { validateClientForm } from './FormValidation';
+import './ClientForms.css';
 
 const AddClientModal = ({isOpen, onClose}) => {
   //context for client operations
@@ -52,36 +53,37 @@ const AddClientModal = ({isOpen, onClose}) => {
   //handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    //validate form data
+    console.log('Form submission started');
+    console.log('Form data:', formData);
+    
     const validationErrors = validateClientForm(formData);
-
-    if (Object.keys(validationErrors).length>0) {
+    console.log('Validation errors:', validationErrors);
+  
+    if (Object.keys(validationErrors).length > 0) {
+      console.log('Validation failed');
       setErrors(validationErrors);
       return;
     }
-
+  
     try {
       setIsSubmitting(true);
-
-      //generate client id
+      console.log('Creating client with data:', formData);
+  
       const clientData = {
         ...formData,
         clientNumber: `CL-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`
       };
-
+  
       await createClient(clientData);
-
-      //reset form and close modal on success
+      console.log('Client created successfully');
+  
       setFormData(initialFormState);
       onClose();
-
     } catch (error) {
-      console.error('Error creating client: ', error);
+      console.error('Error creating client:', error);
       setErrors({
         form: 'Failed to create client. Please try again.'
       });
-
     } finally {
       setIsSubmitting(false);
     }

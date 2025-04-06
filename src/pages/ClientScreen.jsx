@@ -21,6 +21,7 @@ const ClientScreen = () => {
   return (
     <MainLayout>
       <div className="client-screen-container">
+
         {/* Left side: Client List */}
         <div className="client-list-container">
           <ClientList 
@@ -31,6 +32,7 @@ const ClientScreen = () => {
         
         {/* Right side: Client details and Projects */}
         <div className="client-details-container">
+          
           {/* Client details section */}
           <div className="client-card-container">
             {selectedClient ? (

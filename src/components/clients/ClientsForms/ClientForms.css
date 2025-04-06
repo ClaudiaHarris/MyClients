@@ -1,0 +1,256 @@
+/* src/components/clients/ClientForms/ClientForms.css */
+
+/* Main form container */
+.client-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #e0e0e0;
+}
+
+/* Form sections */
+.form-section {
+  background-color: #1a1b2e;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #222;
+}
+
+.form-section h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #B3DFD7;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+/* Required field indicators */
+.form-group label::after {
+  content: '';
+}
+
+.form-group label[for*="name"]::after,
+.form-group label[for="lifecycle"]::after,
+.form-group label[for="address"]::after,
+.form-group label[for="country"]::after,
+.form-group label[for="contactName"]::after,
+.form-group label[for="email"]::after,
+.form-group label[for="phone"]::after,
+.form-group label[for="office"]::after {
+  content: ' *';
+  color: #FF8E04;
+}
+
+/* Form controls */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #0B0C17;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Focus states */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #297E6F;
+  box-shadow: 0 0 0 2px rgba(41, 126, 111, 0.2);
+}
+
+/* Error states */
+.form-group input.error,
+.form-group select.error,
+.form-group textarea.error {
+  border-color: #B4362A;
+  box-shadow: 0 0 0 1px rgba(180, 54, 42, 0.2);
+}
+
+/* Error messages */
+.field-error {
+  color: #FF8E04;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+  font-weight: 500;
+}
+
+.error-message {
+  background-color: rgba(180, 54, 42, 0.2);
+  color: #FF8E04;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #B4362A;
+  font-size: 0.9rem;
+}
+
+/* Form actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #222;
+}
+
+/* Button styles */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #297E6F;
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1d5c51;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid #555;
+  color: #ddd;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-danger {
+  background-color: #B4362A;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #8c2820;
+}
+
+/* Disabled states */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Form placeholders */
+::placeholder {
+  color: #555;
+  opacity: 0.7;
+}
+
+/* Form help text */
+.form-help-text {
+  color: #888;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+/* Field groups (like for address components) */
+.field-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.field-group .form-group {
+  flex: 1;
+}
+
+/* Checkboxes and radio buttons */
+.checkbox-group,
+.radio-group {
+  margin-bottom: 1rem;
+}
+
+.checkbox-group label,
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.checkbox-group input[type="checkbox"],
+.radio-group input[type="radio"] {
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+/* Loading indicator for form submission */
+.loading-indicator {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .field-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-actions {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+  
+  .form-actions button {
+    width: 100%;
+  }
+}

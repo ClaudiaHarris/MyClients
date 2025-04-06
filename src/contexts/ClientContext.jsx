@@ -1,18 +1,15 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { getClients, addClient, updateClient, deleteClient } from '../services/clientService';
+import { getClients, updateClient, deleteClient } from '../services/clientService';
 
 // Create the context
 const ClientContext = createContext();
 
 
 export const ClientProvider = ({ children }) => {
-  // State for clients data
+  // Initialize clients as an empty array
   const [clients, setClients] = useState([]);
-  // Loading state for asynchronous operations
   const [loading, setLoading] = useState(true);
-  // Error state for handling failures
   const [error, setError] = useState(null);
-  // Currently selected client
   const [selectedClient, setSelectedClient] = useState(null);
 
   // Fetch clients when the component mounts
@@ -45,18 +42,25 @@ export const ClientProvider = ({ children }) => {
    */
   const createClient = async (clientData) => {
     try {
-      setLoading(true);
-      // Make the API call to create the client
-      const newClient = await addClient(clientData);
-      // Update the local state with the new client
-      setClients((prevClients) => [...prevClients, newClient]);
-      return newClient;
-    } catch (err) {
-      setError('Failed to create client. Please try again.');
-      console.error('Error creating client:', err);
-      throw err; // Re-throw to allow handling in the component that called this
-    } finally {
-      setLoading(false);
+      const response = await fetch('http://localhost:8000/clients', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clientData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      // Ensure we're spreading an array
+      setClients(prevClients => Array.isArray(prevClients) ? [...prevClients, data] : [data]);
+      return data;
+    } catch (error) {
+      console.error('Error in createClient:', error);
+      throw error;
     }
   };
 
@@ -74,13 +78,13 @@ export const ClientProvider = ({ children }) => {
       const updatedClient = await updateClient(id, clientData);
       // Update the local state with the updated client
       setClients((prevClients) => 
-        prevClients.map((client) => 
-          client.id === id ? updatedClient : client
-        )
+        Array.isArray(prevClients) 
+          ? prevClients.map((client) => client.id === id ? updatedClient : client)
+          : [updatedClient]
       );
       
       // If this is the currently selected client, update that too
-      if (selectedClient && selectedClient.id === id) {
+      if (selectedClient?.id === id) {
         setSelectedClient(updatedClient);
       }
       
