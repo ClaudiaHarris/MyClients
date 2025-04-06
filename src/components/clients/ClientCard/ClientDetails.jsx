@@ -25,17 +25,17 @@ const ClientDetails = ({client}) => {
 
         <div className="info-row">
           <span className="info-label">ClientID:</span>
-          <span className="info-value">{client.clientId}</span> //TODO change clientNumber to clientId
+          <span className="info-value">{client.clientId}</span> {/* TODO change clientNumber to clientId */}
         </div>
 
         <div className="info-row">
           <span className="info-label">Lifecycle:</span>
-          <span className="info-value">{client.lifecycleStage}</span> //TODO change clientNumber to clientId
+          <span className="info-value">{client.lifecycleStage}</span> {/* TODO change clientNumber to clientId */}
         </div>
 
         <div className="info-row">
           <span className="info-label">Main Address:</span>
-          <span className="info-value">{client.address}, {client.country}</span> //TODO change clientNumber to clientId
+          <span className="info-value">{client.address}, {client.country}</span> {/* TODO change clientNumber to clientId */}
         </div>
 
         {client.website && (
