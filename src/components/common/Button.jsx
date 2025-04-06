@@ -32,7 +32,7 @@ const Button = ({
   btn-${size}
   ${disabled ? 'btn-disabled' : ''}
   ${className}
-  `.trim;
+  `.trim();
 
   return (
     <button
