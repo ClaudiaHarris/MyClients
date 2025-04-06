@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import Button from '../../common/Button';
 import {useClientContext} from '../../../contexts/ClientContext';
-import EditClientModal from '../ClientForms/EditClientModal';
-import DeleteConfirmation from '../ClientForms/DeleteConfirmation';
+import EditClientModal from '../ClientsForms/EditClientModal';
+import DeleteConfirmation from '../ClientsForms/DeleteConfirmation';
 
 const ClientRow = ({ client, onSelect }) => {
  

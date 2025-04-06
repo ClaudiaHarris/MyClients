@@ -3,7 +3,7 @@ import MainLayout from '../components/layout/MainLayout';
 import ClientList from '../components/clients/ClientsList/ClientList';
 import ClientCard from '../components/clients/ClientCard/ClientCard';
 import ProjectsBox from '../components/clients/ProjectsBox/ProjectsBox';
-import AddClientModal from '../components/clients/ClientForms/AddClientModal';
+import AddClientModal from '../components/clients/ClientsForms/AddClientModal';
 import { useClientContext } from '../contexts/ClientContext';
 import './ClientScreen.css';
 

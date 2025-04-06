@@ -25,9 +25,9 @@ export const ClientProvider = ({ children }) => {
     fetchClients();
   }, []);
 
-  /**
-   * Fetch all clients from the API
-   */
+  
+  //Fetch all clients from the API
+   
   const fetchClients = async () => {
     try {
       setLoading(true);
