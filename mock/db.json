@@ -1,0 +1,16 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "name": "TechCorp Solutions",
+      "lifecycleStage": "client",
+      "contactName": "John Smith",
+      "contactEmail": "john.smith@techcorp.com",
+      "contactPhone": "(555) 123-4567",
+      "address": "123 Tech Street",
+      "country": "United States",
+      "salesRep": "Anna Mueller",
+      "office": "New York"
+    }
+  ]
+}

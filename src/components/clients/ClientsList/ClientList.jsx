@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
+import { useClientContext } from '../../../contexts/ClientContext';
+import './ClientList.css';
 import LoadingState from '../../common/LoadingState';
 import Button from '../../common/Button';
 import SearchBar from './SearchBar';
 import ClientRow from './ClientRow';
-import { useClientContext } from '../../../contexts/ClientContext';
 
 const ClientList = ({ onClientSelect, onAddNew }) => {
-  // Get client data from context
   const { clients, loading, error } = useClientContext();
-  
-  // State for search and sorting
   const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState('name');
   const [sortDirection, setSortDirection] = useState('asc');
 
+  // Handle loading and error states
+  if (loading) return <div className="loading-state">Loading clients...</div>;
+  if (error) return <div className="error-state">{error}</div>;
+  
+  // Ensure clients is an array
+  const clientsList = clients || [];
+
   // Filter clients based on search term
-  const filteredClients = clients.filter(client => 
+  const filteredClients = clientsList.filter(client => 
     client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     client.contactName.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -40,16 +45,6 @@ const ClientList = ({ onClientSelect, onAddNew }) => {
       setSortDirection('asc');
     }
   };
-
-  // Show loading state
-  if (loading) {
-    return <LoadingState />;
-  }
-
-  // Show error state
-  if (error) {
-    return <div className="error-message">Error: {error}</div>;
-  }
 
   return (
     <div className="client-list">

@@ -1,8 +1,7 @@
 // src/services/api.js
 // This file handles the base API configuration and common API request functions
 
-// Base URL for API - update this to match your API's URL when deployed
-const API_BASE_URL = 'http://localhost:8000'; // Default for local development
+import { API_CONFIG } from '../config/api.config';
 
 /**
  * Handles API requests with appropriate error handling
@@ -10,51 +9,28 @@ const API_BASE_URL = 'http://localhost:8000'; // Default for local development
  * @param {Object} options - Fetch options like method, headers, and body
  * @returns {Promise<any>} - Returns the parsed JSON response
  */
-async function apiRequest(endpoint, options = {}) {
-  // Set default headers if not provided
-  const headers = {
-    'Content-Type': 'application/json',
-    ...options.headers,
-  };
-
-  // Combine options with headers
-  const requestOptions = {
-    ...options,
-    headers,
-  };
-
+const apiRequest = async (endpoint, options = {}) => {
   try {
-    // Make the API request
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, requestOptions);
+    const url = `${API_CONFIG.BASE_URL}${endpoint}`;
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+      ...options,
+    });
 
-    // Check if the response was successful
     if (!response.ok) {
-      // Try to parse error message from the response if available
-      let errorData;
-      try {
-        errorData = await response.json();
-      } catch (e) {
-        // If response can't be parsed as JSON, use status text
-        errorData = { message: response.statusText };
-      }
-
-      throw new Error(
-        errorData.message || `API request failed with status ${response.status}`
-      );
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    // For successful responses with no content (204)
-    if (response.status === 204) {
-      return null;
-    }
-
-    // Parse and return the JSON response
-    return await response.json();
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error('API request error:', error);
     throw error;
   }
-}
+};
 
 /**
  * HTTP GET request

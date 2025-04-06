@@ -4,12 +4,7 @@ import { getClients, addClient, updateClient, deleteClient } from '../services/c
 // Create the context
 const ClientContext = createContext();
 
-/**
- * ClientProvider component that wraps the application to provide client data and operations
- * 
- * @param {Object} props - Component props
- * @param {React.ReactNode} props.children - Child components that will have access to the context
- */
+
 export const ClientProvider = ({ children }) => {
   // State for clients data
   const [clients, setClients] = useState([]);
@@ -31,11 +26,11 @@ export const ClientProvider = ({ children }) => {
   const fetchClients = async () => {
     try {
       setLoading(true);
+      setError(null);
       const data = await getClients();
       setClients(data);
-      setError(null);
     } catch (err) {
-      setError('Failed to fetch clients. Please try again later.');
+      setError('Unable to connect to the server. Please check your connection and try again.');
       console.error('Error fetching clients:', err);
     } finally {
       setLoading(false);
