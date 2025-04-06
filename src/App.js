@@ -1,6 +1,6 @@
 import React from "react";
-import './App.css';
-import MainLayout from "./components/layout/MainLayout";
+import { ClientProvider } from "./contexts/ClientContext";
+import ClientScreen from "./pages/ClientScreen";
 
 const PageTitle = () => {
   return <h1 className="page-title">My Clients</h1>;
@@ -27,12 +27,12 @@ const TemporaryClientScreen = () => {
 
 function App() {
   return (
-    <div className="App">
-      <MainLayout>
-        <PageTitle />
-        <TemporaryClientScreen />
-      </MainLayout>
-    </div>
+    
+      <ClientProvider>
+        <PageTitle/>
+        <ClientScreen />
+      </ClientProvider>
+   
   );
 }
 

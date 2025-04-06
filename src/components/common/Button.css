@@ -1,0 +1,126 @@
+/* Button.css */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+
+/* Button sizes */
+.btn-small {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.btn-medium {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.btn-large {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+/* Button variants - using your brand colors */
+.btn-primary {
+  background-color: #297E6F; /* Teal */
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #216A5E;
+}
+
+.btn-primary:active {
+  background-color: #1B574C;
+}
+
+.btn-secondary {
+  background-color: #1A1B2E; /* Darker version of your deep blue */
+  color: #B3DFD7; /* Light teal */
+  border: 1px solid #297E6F;
+}
+
+.btn-secondary:hover {
+  background-color: #242538;
+}
+
+.btn-secondary:active {
+  background-color: #2D2F45;
+}
+
+.btn-danger {
+  background-color: #B4362A; /* Rustic red */
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #A02F25;
+}
+
+.btn-danger:active {
+  background-color: #8B2820;
+}
+
+.btn-success {
+  background-color: #43A047; /* A green color for success actions */
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #388E3C;
+}
+
+.btn-success:active {
+  background-color: #2E7D32;
+}
+
+.btn-text {
+  background-color: transparent;
+  color: #B3DFD7; /* Light teal */
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.btn-text:hover {
+  background-color: rgba(41, 126, 111, 0.1); /* Teal with opacity */
+  color: #9ACDC3;
+}
+
+.btn-text:active {
+  background-color: rgba(41, 126, 111, 0.2);
+  color: #87BDB2;
+}
+
+/* Disabled state */
+.btn-disabled,
+.btn-disabled:hover,
+.btn-disabled:active {
+  background-color: #3C3E56;
+  color: #8A8C9E;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* When used inside the client list */
+.client-row .btn {
+  margin: 0 4px;
+}
+
+.edit-button {
+  background-color: #297E6F; /* Teal */
+}
+
+.delete-button {
+  background-color: #B4362A; /* Rustic red */
+}
