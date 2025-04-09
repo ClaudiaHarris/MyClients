@@ -133,13 +133,20 @@ const Breadcrumb = () => {
     </div>
   );
 };
+//page-hero component
+const PageHeader = () => {
+  return (
+    <div className="page-header">
+      <h1 className="page-title">My Clients</h1>
+    </div>
+  );
+};
+
 // Simple Navbar component
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="screen-title">
-        <h1>My Clients</h1>
-      </div>
+      
       <ul className="nav-button-links">
         <li><button className="nav-button-link">Dashboard</button></li>
         <li><button className="nav-button-link active">Clients</button></li>
@@ -153,7 +160,7 @@ const Navbar = () => {
         <button className="settings">
           <FontAwesomeIcon icon={faCog} className="settings-icon"/> 
         </button>
-        <img src="/globaltech-logo-light.svg" alt="GlobalTech Logo" className="nav-logo" />
+        
       </div>
     </nav>
   );
@@ -557,7 +564,10 @@ const MainLayout = ({ children }) => {
   return (
     <div className="main-layout">
       <Navbar />
-      <Breadcrumb />
+      <div className="header-logo">
+        <img src="/globaltech-logo-light.svg" alt="GlobalTech Logo" className="logo" />
+      </div>
+      
       <main className="main-content">
         {children}
       </main>
@@ -754,6 +764,9 @@ const ClientScreen = () => {
 
   return (
     <MainLayout>
+      <Breadcrumb /> 
+      <PageHeader />
+      
       <div className="client-screen-container">
         {/* Left side: Client List */}
         <div className="client-list-container">

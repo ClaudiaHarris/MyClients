@@ -84,19 +84,30 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navbar */
 .navbar {
-  background-color: var(--deep-blue);
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: calc(119px + var(--spacing-lg) * 2); /* Logo width + padding */
   color: var(--white);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-md) var(--spacing-lg);
   border: none;
-  width: 100%;
+  z-index: 1000;
 }
-
+.page-header {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  gap: var(--spacing-lg);
+}
 .screen-title {
+  margin-top: var(--spacing-xs);
   font-size: 1.5rem;
   margin-bottom: 0;
+  color: var(--white);
 }
 
 .nav-button-links {
@@ -152,12 +163,28 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: var(--spacing-md);
 }
-.nav-logo {
-  height: 40px;
-  width: auto;
-  margin-left: var(--spacing-md);
+
+.page-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  width: 100%;
+  position: relative;
+  gap: var(--spacing-lg);
 }
 
+.header-logo {
+  position: fixed;
+  top: var(--spacing-md);
+  right: max(var(--spacing-lg), calc((100vw - 1400px) / 2));
+  z-index: 1001;
+}
+
+.logo {
+  height: 80px;
+  width: auto;
+}
 
 .breadcrumb {
   display: flex;
@@ -165,8 +192,9 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--spacing-xs);
   font-size: 0.75rem;
   color: var(--teal);
+  
   margin-bottom: var(--spacing-xs);
-  margin-left: var(--spacing-lg);
+ 
 }
 
 .breadcrumb-item {
@@ -179,10 +207,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Client Screen Layout */
 .client-screen-container {
+  margin-top: 50px; /* based on navbar height */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-lg);
-  height: calc(100vh - 100px); /* Adjust based on navbar height */
+  height: calc(100vh - 100px); 
 }
 
 .client-list-container, .client-details-container {
