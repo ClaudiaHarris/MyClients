@@ -1,26 +1,16 @@
+// src/components/clients/ClientList/ClientList.jsx
 import React, { useState } from 'react';
-import { useClientContext } from '../../../contexts/ClientContext';
-import './ClientList.css';
-import LoadingState from '../../common/LoadingState';
-import Button from '../../common/Button';
-import SearchBar from './SearchBar';
 import ClientRow from './ClientRow';
+import SearchBar from './SearchBar';
+import Button from '../../common/Button';
 
-const ClientList = ({ onClientSelect, onAddNew }) => {
-  const { clients, loading, error } = useClientContext();
+const ClientList = ({ clients, onClientSelect, onAddNew }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState('name');
   const [sortDirection, setSortDirection] = useState('asc');
 
-  // Handle loading and error states
-  if (loading) return <div className="loading-state">Loading clients...</div>;
-  if (error) return <div className="error-state">{error}</div>;
-  
-  // Ensure clients is an array
-  const clientsList = clients || [];
-
   // Filter clients based on search term
-  const filteredClients = clientsList.filter(client => 
+  const filteredClients = clients.filter(client => 
     client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     client.contactName.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -34,13 +24,10 @@ const ClientList = ({ onClientSelect, onAddNew }) => {
     }
   });
 
-  // Handle sort column click
   const handleSort = (field) => {
     if (sortField === field) {
-      // If already sorting by this field, toggle direction
       setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     } else {
-      // If sorting by a new field, set it and default to ascending
       setSortField(field);
       setSortDirection('asc');
     }
@@ -53,12 +40,7 @@ const ClientList = ({ onClientSelect, onAddNew }) => {
         <Button onClick={onAddNew}>Add New Client</Button>
       </div>
       
-      {/* Search bar component */}
-      <SearchBar 
-        value={searchTerm} 
-        onChange={setSearchTerm} 
-        placeholder="Search by client or contact name..."
-      />
+      <SearchBar value={searchTerm} onChange={setSearchTerm} />
       
       <div className="client-table-container">
         <table className="client-table">
@@ -66,58 +48,37 @@ const ClientList = ({ onClientSelect, onAddNew }) => {
             <tr>
               <th onClick={() => handleSort('name')}>
                 Client Name
-                {sortField === 'name' && (
-                  <span className="sort-icon">
-                    {sortDirection === 'asc' ? ' ↑' : ' ↓'}
-                  </span>
-                )}
+                {sortField === 'name' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th onClick={() => handleSort('contactName')}>
                 Contact
-                {sortField === 'contactName' && (
-                  <span className="sort-icon">
-                    {sortDirection === 'asc' ? ' ↑' : ' ↓'}
-                  </span>
-                )}
+                {sortField === 'contactName' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th onClick={() => handleSort('lifecycleStage')}>
                 Lifecycle Stage
-                {sortField === 'lifecycleStage' && (
-                  <span className="sort-icon">
-                    {sortDirection === 'asc' ? ' ↑' : ' ↓'}
-                  </span>
-                )}
+                {sortField === 'lifecycleStage' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th onClick={() => handleSort('salesRep')}>
                 Sales Rep
-                {sortField === 'salesRep' && (
-                  <span className="sort-icon">
-                    {sortDirection === 'asc' ? ' ↑' : ' ↓'}
-                  </span>
-                )}
+                {sortField === 'salesRep' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th onClick={() => handleSort('office')}>
                 Office
-                {sortField === 'office' && (
-                  <span className="sort-icon">
-                    {sortDirection === 'asc' ? ' ↑' : ' ↓'}
-                  </span>
-                )}
+                {sortField === 'office' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th>Email</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {sortedClients.length > 0 ? (
-              sortedClients.map(client => (
-                <ClientRow 
-                  key={client.id} 
-                  client={client} 
-                  onSelect={() => onClientSelect(client)} 
-                />
-              ))
-            ) : (
+            {sortedClients.map(client => (
+              <ClientRow 
+                key={client.id} 
+                client={client} 
+                onSelect={() => onClientSelect(client)} 
+              />
+            ))}
+            {sortedClients.length === 0 && (
               <tr>
                 <td colSpan="7" className="no-clients-message">
                   No clients found

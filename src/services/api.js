@@ -1,14 +1,6 @@
-// src/services/api.js
-// This file handles the base API configuration and common API request functions
-
 import { API_CONFIG } from '../config/api.config';
 
-/**
- * Handles API requests with appropriate error handling
- * @param {string} endpoint - The API endpoint to call (without the base URL)
- * @param {Object} options - Fetch options like method, headers, and body
- * @returns {Promise<any>} - Returns the parsed JSON response
- */
+
 const apiRequest = async (endpoint, options = {}) => {
   try {
     const url = `${API_CONFIG.BASE_URL}${endpoint}`;

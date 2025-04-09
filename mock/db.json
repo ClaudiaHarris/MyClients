@@ -1,7 +1,7 @@
 {
   "clients": [
     {
-      "id": 1,
+      "id": "1",
       "name": "TechCorp Solutions",
       "lifecycleStage": "client",
       "contactName": "John Smith",
@@ -55,6 +55,66 @@
       "office": "New York",
       "website": "",
       "id": "b9d8"
+    },
+    {
+      "id": "6cc1",
+      "name": "Dunkin Donuts",
+      "lifecycleStage": "lead",
+      "address": "572 Royal Woods Dr",
+      "country": "United States",
+      "contactName": "Claudia Harris",
+      "contactPhone": "3307302068",
+      "contactExtension": "",
+      "contactEmail": "claudiavharris@gmail.com",
+      "salesRep": "",
+      "office": "New York",
+      "website": "",
+      "clientNumber": "CL-8511"
+    },
+    {
+      "id": "b116",
+      "name": "Wendy's",
+      "lifecycleStage": "lead",
+      "address": "123 Main street",
+      "country": "USA",
+      "contactName": "Laura Loo",
+      "contactPhone": "333-123-7895",
+      "contactExtension": "",
+      "contactEmail": "laura@wendys.com",
+      "salesRep": "John Doe",
+      "office": "Rio de Janeiro",
+      "website": "www.wendys.com",
+      "clientNumber": "CL-0700"
+    },
+    {
+      "id": "79ae",
+      "name": "Wendy's",
+      "lifecycleStage": "lead",
+      "address": "123 Main street",
+      "country": "USA",
+      "contactName": "Laura Loo",
+      "contactPhone": "333-123-7895",
+      "contactExtension": "",
+      "contactEmail": "laura@wendys.com",
+      "salesRep": "",
+      "office": "New York",
+      "website": "",
+      "clientNumber": "CL-8897"
+    },
+    {
+      "id": "0506",
+      "name": "Wendy's",
+      "lifecycleStage": "lead",
+      "address": "123 Main street",
+      "country": "USA",
+      "contactName": "Laura Loo",
+      "contactPhone": "333-123-7895",
+      "contactExtension": "",
+      "contactEmail": "laura@wendys.com",
+      "salesRep": "",
+      "office": "Rio de Janeiro",
+      "website": "",
+      "clientNumber": "CL-6188"
     }
   ]
 }

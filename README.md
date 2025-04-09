@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+-->My Clients Module for a fictitious CRM by Claudia Harris
+A React-based client management interface that allows users to view, add, and manage client information.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-->Prerequisites
 
-## Available Scripts
+- Node.js (v16 or higher)
+- npm (v8 or higher)
 
-In the project directory, you can run:
+Installation
 
-### `npm start`
+-->Install the required dependencies in the project directory:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+(npm install if Powershell)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-->Running the Application
 
-### `npm test`
+The application requires two servers to run simultaneously:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Start the React development server (main application):
 
-### `npm run build`
+(npm start if powershell)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This will open the application in your browser at `http://localhost:3000`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. In a new terminal, start the JSON server (mock API):
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+(npm run start:server if powershell)
 
-### `npm run eject`
+This will start the mock API server at `http://localhost:8000`
+ 
+ -->Features as of 2025-04-07
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- View list of clients
+- Add new clients
+- Some Form Validation
+- Some Error handling
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-->Notes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- The application currently uses a mock API server for demonstration purposes
+- Both servers must be running for the application to work properly
+- Default port for React app is 3000, and JSON server runs on port 8000
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-->Troubleshooting
 
-## Learn More
+If you encounter any issues:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Make sure both servers are running
+2. Check the browser console for errors
+3. Verify that ports 3000 and 8000 are available
+4. Try clearing the browser cache

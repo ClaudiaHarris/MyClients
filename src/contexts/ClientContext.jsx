@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 import { getClients, updateClient, deleteClient } from '../services/clientService';
 
 // Create the context
-const ClientContext = createContext();
+export const ClientContext = createContext();
 
 
 export const ClientProvider = ({ children }) => {
@@ -133,6 +133,7 @@ export const ClientProvider = ({ children }) => {
    * @param {Object|null} client - The client to select, or null to clear selection
    */
   const selectClient = (client) => {
+    console.log('Setting selected client:', client); // Add debugging
     setSelectedClient(client);
   };
 

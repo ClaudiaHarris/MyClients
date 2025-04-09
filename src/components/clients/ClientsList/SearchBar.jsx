@@ -1,26 +1,26 @@
-import React from "react";
+// src/components/clients/ClientList/SearchBar.jsx
+import React from 'react';
 
-const SearchBar = ({ value, onChange, placeholder }) => {
+const SearchBar = ({ value, onChange }) => {
   return (
     <div className="search-bar">
       <input
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder || "Search..."}
+        placeholder="Search by client or contact name..."
         className="search-input"
       />
       {value && (
-        <button
-          className="clear-search"
+        <button 
+          className="clear-search-btn"
           onClick={() => onChange('')}
-          aria-label="Clear search">
-            x
-          </button>
+        >
+          ✕
+        </button>
       )}
-      <span className="search-icon">🔍</span>
-      
     </div>
   );
 };
+
 export default SearchBar;
