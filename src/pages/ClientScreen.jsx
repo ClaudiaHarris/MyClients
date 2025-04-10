@@ -183,6 +183,7 @@ const Button = ({ children, onClick, variant = 'primary', type = 'button' }) => 
 const SearchBar = ({ value, onChange }) => {
   return (
     <div className="search-bar">
+      <FontAwesomeIcon icon={faSearch} className="search-icon" />
       <input
         type="text"
         value={value}
@@ -242,9 +243,9 @@ const ClientRow = ({ client, onSelect }) => {
 
 // Client List component
 const ClientList = ({ clients, onClientSelect, onAddNew }) => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState('name');
   const [sortDirection, setSortDirection] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Filter clients based on search term
   const filteredClients = clients.filter(client => 
@@ -274,11 +275,8 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
     <div className="client-list">
       <div className="client-list-header">
         <h2>Clients</h2>
-        <Button onClick={onAddNew}>Add New Client</Button>
       </div>
-      
-      <SearchBar value={searchTerm} onChange={setSearchTerm} />
-      
+
       <div className="client-table-container">
         <table className="client-table">
           <thead>
@@ -504,9 +502,12 @@ const ProjectList = ({ projects }) => {
                 <td>{project.startDate}</td>
                 <td>{project.endDate}</td>
                 <td>
-                  <a href="#" className="support-tickets-link">
+                  <button 
+                    className="support-tickets-link"
+                    onClick={() => alert(`View ${project.supportTickets} support tickets`)}
+                  >
                     {project.supportTickets} tickets
-                  </a>
+                  </button>
                 </td>
                 <td className="actions">
                   <button className="edit-btn">Edit</button>
@@ -574,7 +575,6 @@ const MainLayout = ({ children }) => {
     </div>
   );
 };
-
 // Add Client Modal component
 const AddClientModal = ({ isOpen, onClose }) => {
 
@@ -757,21 +757,48 @@ const AddClientModal = ({ isOpen, onClose }) => {
   );
 };
 
+const AddClientButton = ({ onClick }) => {
+  return (
+    <button className="btn btn-alert" onClick={onClick}>
+      New Client
+    </button>
+  );
+}
+const ClientListActions = ({ onAddNew, searchValue, onSearchChange }) => {
+  return (
+    
+      <div className="client-list-actions">
+        <AddClientButton onClick={onAddNew} />
+        <SearchBar value={searchValue} onChange={onSearchChange} />
+      </div>
+   
+  );
+};
 // Main ClientScreen component
 const ClientScreen = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedClient, setSelectedClient] = useState(null);
+  const [searchValue, setSearchValue] = useState('');
 
+  const filteredClients = mockClients.filter(client =>
+    client.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+    client.contactName.toLowerCase().includes(searchValue.toLowerCase())
+  );
+  
   return (
     <MainLayout>
       <Breadcrumb /> 
       <PageHeader />
-      
+
       <div className="client-screen-container">
-        {/* Left side: Client List */}
         <div className="client-list-container">
+          <ClientListActions 
+            onAddNew={() => setIsAddModalOpen(true)}
+            searchValue={searchValue}
+            onSearchChange={setSearchValue}
+          />
           <ClientList 
-            clients={mockClients}
+            clients={filteredClients}
             onClientSelect={setSelectedClient}
             onAddNew={() => setIsAddModalOpen(true)}
           />
@@ -781,7 +808,6 @@ const ClientScreen = () => {
         <div className="client-details-container">
           {selectedClient ? (
             <>
-              
               <ProjectsBox clientId={selectedClient.id} />
               <ClientCard client={selectedClient} />
             </>
@@ -793,7 +819,6 @@ const ClientScreen = () => {
         </div>
       </div>
       
-      {/* Modals */}
       <AddClientModal 
         isOpen={isAddModalOpen} 
         onClose={() => setIsAddModalOpen(false)}

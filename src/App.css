@@ -29,7 +29,7 @@ code {
   --dark-grey: #333;
   --medium-grey: #666;
   --light-grey: #EEE;
-  --white: #FFF;
+  --white: #ffffffd7;
   
   /* UI colors */
   --lead-color: #FF8E04; /* pastured-egg */
@@ -84,11 +84,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navbar */
 .navbar {
-  background: transparent;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
   position: absolute;
   top: 0;
   left: 0;
-  right: calc(119px + var(--spacing-lg) * 2); /* Logo width + padding */
+  right: calc(100px + var(--spacing-lg) * 2); /* Logo width + padding */
   color: var(--white);
   display: flex;
   justify-content: space-between;
@@ -100,12 +100,10 @@ h1, h2, h3, h4, h5, h6 {
 .page-header {
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
   gap: var(--spacing-lg);
 }
-.screen-title {
+.page-title {
   margin-top: var(--spacing-xs);
-  font-size: 1.5rem;
   margin-bottom: 0;
   color: var(--white);
 }
@@ -177,12 +175,13 @@ h1, h2, h3, h4, h5, h6 {
 .header-logo {
   position: fixed;
   top: var(--spacing-md);
+  padding-right: var(--spacing-md);
   right: max(var(--spacing-lg), calc((100vw - 1400px) / 2));
   z-index: 1001;
 }
 
 .logo {
-  height: 80px;
+  height: 40px;
   width: auto;
 }
 
@@ -192,9 +191,10 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--spacing-xs);
   font-size: 0.75rem;
   color: var(--teal);
-  
   margin-bottom: var(--spacing-xs);
- 
+  position: relative;
+  z-index: 1002;
+  cursor: pointer;
 }
 
 .breadcrumb-item {
@@ -207,7 +207,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Client Screen Layout */
 .client-screen-container {
-  margin-top: 50px; /* based on navbar height */
+  padding: var(--spacing-lg) 0 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-lg);
@@ -215,8 +215,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .client-list-container, .client-details-container {
-  background-color: var(--white);
-  border-radius: 8px;
+  background-color: tranparent;
+  border-radius: 8px;    
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
@@ -225,46 +225,78 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Client List */
 .client-list {
+  background-color: var(--white);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: var(--spacing-md);
 }
 
 .client-list-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: 0 var(--spacing-md) var(--spacing-lg);
   border-bottom: 1px solid var(--light-grey);
 }
 
-.client-list-header h2 {
-  margin-bottom: 0;
+.client-list-actions {
+  background-color: tranparent;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: 1;
+  width: 100%;
 }
 
 .search-bar {
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-bottom: 1px solid var(--light-grey);
+  flex: 1;
   position: relative;
+  padding: var(--spacing-md) 0;
 }
 
 .search-input {
   width: 100%;
-  padding: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) calc(var(--spacing-lg) * 2.5);
   border: 1px solid var(--light-grey);
-  border-radius: 4px;
+  border-radius: 25px;
   font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(41, 126, 111, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: var(--spacing-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--medium-grey);
+  pointer-events: none;
 }
 
 .clear-search-btn {
   position: absolute;
-  right: calc(var(--spacing-lg) + var(--spacing-md));
+  right: var(--spacing-lg);
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   color: var(--medium-grey);
   cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.client-list-header h2 {
+  margin-bottom: 0;
 }
 
 .client-table-container {
@@ -553,12 +585,12 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #ddd;
 }
 
-.btn-danger {
+.btn-alert {
   background-color: var(--rustic-red);
   color: var(--white);
 }
 
-.btn-danger:hover {
+.btn-alert:hover {
   background-color: #9c2e24;
 }
 
@@ -575,6 +607,9 @@ h1, h2, h3, h4, h5, h6 {
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+.add-client-button-container {
+  padding: var(--spacing-lg) 0 var(--spacing-sm);
 }
 
 /* Modal Styles */
