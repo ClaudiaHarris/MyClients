@@ -8,6 +8,16 @@
   height: calc(100vh - 60px); /* Adjust based on your navbar height */
   color: #fff;
 }
+thead {
+  background-color: var(--pastured-egg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #1F1F2E;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 /* Left column - Client List */
 .client-list-container {

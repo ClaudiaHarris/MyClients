@@ -209,12 +209,12 @@ h1, h2, h3, h4, h5, h6 {
 .client-screen-container {
   padding: var(--spacing-lg) 0 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: var(--spacing-lg);
-  height: calc(100vh - 100px); 
+  height: 80vh; 
 }
 
-.client-list-container, .client-details-container {
+.client-list-container {
   background-color: tranparent;
   border-radius: 8px;    
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -222,24 +222,35 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
 }
+.client-details-container {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
 
 /* Client List */
 .client-list {
-  background-color: var(--white);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: var(--spacing-md);
+  
 }
 
 .client-list-header {
+  background-color: var(--pastured-egg);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
   border-bottom: 1px solid var(--light-grey);
+  border-radius: 8px 8px 0 0;
 }
+
 
 .client-list-actions {
   background-color: tranparent;
@@ -248,20 +259,24 @@ h1, h2, h3, h4, h5, h6 {
   gap: var(--spacing-md);
   flex: 1;
   width: 100%;
+  padding: var(--spacing-md) 0;
 }
 
 .search-bar {
   flex: 1;
   position: relative;
-  padding: var(--spacing-md) 0;
+  margin: 0;
+  padding: 0;
 }
 
 .search-input {
   width: 100%;
-  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) calc(var(--spacing-lg) * 2.5);
-  border: 1px solid var(--light-grey);
+  padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-sm) calc(var(--spacing-lg) * 2);
   border-radius: 25px;
-  font-size: 1rem;
+  border: 1px solid var(--light-grey);
+  background-color: #1a1b2e;
+  color: var(--white);
+  font-size: 0.9rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -273,7 +288,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .search-icon {
   position: absolute;
-  left: var(--spacing-lg);
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--medium-grey);
@@ -300,35 +315,130 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .client-table-container {
+  background-color: var(--white);
+  width: 100%;
+  height: 60vh;
+  overflow-x:hidden;
   flex: 1;
   overflow-y: auto;
-  padding: 0 var(--spacing-lg);
+  border-radius: 8px;
+}
+
+.client-table-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.client-table thead {
+  width: 100%;
+  background-color: var(--pastured-egg);
+}
+
+.client-table thead tr {
+  display: table-row;
+  width: 100%;
+  font-size: .8rem;
 }
 
 .client-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  border-radius: 8px;
+  margin: 0;
+}
+
+
+
+.client-table th,
+.client-table td {
+  padding: var(--spacing-xs) var(--spacing-md);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .client-table th {
+  background-color: var(--pastured-egg);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.client-table thead th {
+  padding: var(--spacing-sm);
   text-align: left;
-  padding: var(--spacing-md);
-  border-bottom: 2px solid var(--light-grey);
-  cursor: pointer;
+  vertical-align: middle;
+  line-height: 1.2;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.client-table tbody td {
+  vertical-align: middle;
+  line-height: 1.2;
+}
+
+/* Adjust column widths */
+.client-table th:nth-child(1), 
+.client-table td:nth-child(1) { width: 20%; }  /* Client Name */
+
+.client-table th:nth-child(2),
+.client-table td:nth-child(2) { width: 15%; }  /* Contact */
+
+.client-table th:nth-child(3),
+.client-table td:nth-child(3) { width: 12%; }  /* Lifecycle Stage */
+
+.client-table th:nth-child(4),
+.client-table td:nth-child(4) { width: 15%; }  /* Sales Rep */
+
+.client-table th:nth-child(5),
+.client-table td:nth-child(5) { width: 10%; }  /* Office */
+
+.client-table th:nth-child(6),
+.client-table td:nth-child(6) { width: 18%; }  /* Email */
+
+.client-table th:nth-child(7),
+.client-table td:nth-child(7) { 
+  width: 130px;  /* Actions - increased width */
+  padding-right: var(--spacing-md);
+  white-space: nowrap;
+  overflow: visible; /* Allow buttons to be visible */
 }
 
 .client-table th:hover {
-  background-color: var(--light-grey);
+  background-color: #ff9e28;
 }
 
 .client-table td {
-  padding: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-xs);
   border-bottom: 1px solid var(--light-grey);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0; 
+}
+
+.client-table td.actions {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Ensure table header aligns with the action buttons */
+.client-table th:last-child {
+  padding-right: var(--spacing-md);
+  text-align: left;
 }
 
 .client-row {
   cursor: pointer;
   transition: background-color 0.2s ease;
+  font-size: 0.8rem;
+ 
 }
 
 .client-row:hover {
@@ -339,18 +449,19 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.5rem;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
 .lifecycle-stage.lead {
   background-color: var(--lead-color);
-  color: var(--white);
+  color: var (--white);
 }
 
 .lifecycle-stage.prospect {
   background-color: var(--prospect-color);
-  color: var(--white);
+  color: var (--white);
 }
 
 .lifecycle-stage.client {
@@ -360,17 +471,27 @@ h1, h2, h3, h4, h5, h6 {
 
 .actions {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  min-width: 120px;
+  justify-content: flex-end; /* Changed from flex-start to flex-end */
 }
 
 .edit-btn, .delete-btn, .archive-btn {
-  padding: var(--spacing-xs) var(--spacing-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--spacing-xs) / 2) var(--spacing-xs);
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  min-width: 35px;
+  transition: opacity 0.2s ease;
 }
 
+/* Remove the duplicate definition and keep the specific styles */
 .edit-btn {
   background-color: var(--teal);
   color: var(--white);
@@ -386,6 +507,18 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--white);
 }
 
+.edit-btn:hover {
+  opacity: 0.85;
+}
+
+.delete-btn:hover {
+  opacity: 0.85;
+}
+
+.archive-btn:hover {
+  opacity: 0.85;
+}
+
 .no-clients-message {
   text-align: center;
   padding: var(--spacing-lg);
@@ -394,8 +527,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Client Card */
 .client-card {
-  background-color: var(--white);
-  height: 100%;
+ 
+  height: 50vh;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
 }
@@ -404,45 +538,52 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-bottom: 1px solid var(--light-grey);
-}
-
-.client-card-header h2 {
-  margin-bottom: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  gap: var(--spacing-md);
 }
 
 .client-card-actions {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
+  justify-content: flex-end;
+  margin-left: auto;
+  transform: translatey(-100%);
 }
 
 .client-card-content {
-  padding: var(--spacing-lg);
+  background-color: var(--white);
+  border-radius: 8px;
+  flex-direction: column;
+  padding: var(--spacing-md) var(--spacing-md);
   flex: 1;
   overflow-y: auto;
 }
 
+.client-card-content h4 {
+  margin-bottom: 0;
+  font-size: 1.3rem;
+}
+
 .client-details-section, .contact-section, .sales-rep-section, .contracts-section {
-  margin-bottom: var(--spacing-lg);
-  border: 1px solid var(--light-grey);
-  border-radius: 4px;
+  margin-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--light-grey);
+ 
   overflow: hidden;
 }
 
 .client-details-section h3, .contact-section h3, .sales-rep-section h3, .contracts-section h3 {
   background-color: var(--light-grey);
-  padding: var(--spacing-md);
   margin-bottom: 0;
   font-size: 1rem;
 }
 
 .section-content {
-  padding: var(--spacing-md);
+  padding: 0;
 }
 
 .section-content p {
-  margin-bottom: var(--spacing-sm);
+  font-size: 0.8rem;
+  margin-bottom: var (--spacing-xs);
 }
 
 .contracts-table {
@@ -478,58 +619,106 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .projects-box-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  
   border-bottom: 1px solid var(--light-grey);
 }
 
 .projects-box-header h2 {
-  margin-bottom: 0;
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--deep-blue);
+}
+
+.projects-box-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.add-project-btn {
+  background-color: var(--teal);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: calc(var(--spacing-xs) / 2) var(--spacing-xs);
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.add-project-btn:hover {
+  opacity: 0.85;
 }
 
 .project-tabs {
   display: flex;
+ 
   border-bottom: 1px solid var(--light-grey);
+  padding: 0 var(--spacing-md);
 }
 
 .tab {
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--deep-blue);
   background: none;
   border: none;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
 }
 
 .tab:hover {
-  background-color: var(--light-grey);
+  color: var(--light-teal);
 }
 
 .tab.active {
+  color: var(--teal);
   border-bottom: 2px solid var(--teal);
-  font-weight: bold;
+}
+
+.project-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-md);
 }
 
 .projects-table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 0.8rem;
 }
 
-.projects-table th, .projects-table td {
+.projects-table th {
+  background-color: var(--deep-blue);
+  color: var(--light-teal);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 2px solid var(--teal);
+}
+
+.projects-table td {
   padding: var(--spacing-sm) var(--spacing-md);
   border-bottom: 1px solid var(--light-grey);
-  text-align: left;
+  color: var(--dark-grey);
 }
 
 .status-badge {
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: 4px;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
@@ -551,10 +740,22 @@ h1, h2, h3, h4, h5, h6 {
 .support-tickets-link {
   color: var(--teal);
   text-decoration: none;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.8rem;
 }
 
 .support-tickets-link:hover {
   text-decoration: underline;
+}
+
+.no-projects-message {
+  text-align: center;
+  padding: var(--spacing-lg);
+  color: var(--medium-grey);
+  font-style: italic;
 }
 
 /* Buttons */
@@ -578,7 +779,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-secondary {
   background-color: var(--light-grey);
-  color: var(--dark-grey);
+  color: var (--dark-grey);
 }
 
 .btn-secondary:hover {
@@ -588,6 +789,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-alert {
   background-color: var(--rustic-red);
   color: var(--white);
+  
 }
 
 .btn-alert:hover {

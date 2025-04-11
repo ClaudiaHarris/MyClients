@@ -16,6 +16,7 @@ const mockClients = [
     address: "123 Innovation Way, Silicon Valley, CA",
     website: "www.techvision.com",
     phone: "555-123-4567",
+    ext: "789",
     contracts: [
       { id: 101, type: "Software Development", startDate: "2023-01-15", endDate: "2023-12-31" },
       { id: 102, type: "Support & Maintenance", startDate: "2023-01-15", endDate: "2024-01-14" }
@@ -32,6 +33,7 @@ const mockClients = [
     address: "456 Corporate Blvd, Chicago, IL",
     website: "www.globalservices.com",
     phone: "555-987-6543",
+    ext: "456",
     contracts: []
   },
   {
@@ -45,6 +47,7 @@ const mockClients = [
     address: "789 Venture St, Boston, MA",
     website: "www.innovatepartners.com",
     phone: "555-456-7890",
+    ext: "789",
     contracts: []
   },
   {
@@ -58,6 +61,7 @@ const mockClients = [
     address: "321 Progress Ave, Seattle, WA",
     website: "www.forwardsolutions.com",
     phone: "555-234-5678",
+    ext: "144",
     contracts: [
       { id: 103, type: "Consulting", startDate: "2023-03-10", endDate: "2023-09-10" }
     ]
@@ -73,6 +77,7 @@ const mockClients = [
     address: "654 Opportunity Ln, Austin, TX",
     website: "www.brightfuture.com",
     phone: "555-876-5432",
+    ext: "101",
     contracts: []
   }
 ];
@@ -117,9 +122,9 @@ const mockProjects = [
 ];
 
 const mockSalesReps = [
-  { id: 1, name: "Michael Scott", office: "NY", email: "michael@globaltech.com", phone: "555-111-2222" },
-  { id: 2, name: "Jim Halpert", office: "Frankfurt", email: "jim@globaltech.com", phone: "555-333-4444" },
-  { id: 3, name: "Dwight Schrute", office: "Rio de Janeiro", email: "dwight@globaltech.com", phone: "555-555-6666" },
+  { id: 1, name: "Michael Scott", office: "NY", email: "michael@globaltech.com", phone: "555-111-2222", ext: "123" },
+  { id: 2, name: "Jim Halpert", office: "Frankfurt", email: "jim@globaltech.com", phone: "555-333-4444", ext: "456" },
+  { id: 3, name: "Dwight Schrute", office: "Rio de Janeiro", email: "dwight@globaltech.com", phone: "555-555-6666", ext: "789" },
 ];
 //breadcrumb component
 const Breadcrumb = () => {
@@ -273,13 +278,10 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
 
   return (
     <div className="client-list">
-      <div className="client-list-header">
-        <h2>Clients</h2>
-      </div>
-
+     
       <div className="client-table-container">
         <table className="client-table">
-          <thead>
+          <thead className="client-table-header">
             <tr>
               <th onClick={() => handleSort('name')}>
                 Client Name
@@ -290,7 +292,7 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
                 {sortField === 'contactName' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th onClick={() => handleSort('lifecycleStage')}>
-                Lifecycle Stage
+                Lifecycle
                 {sortField === 'lifecycleStage' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th onClick={() => handleSort('salesRep')}>
@@ -331,24 +333,37 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
 const ClientDetails = ({ name, address, website }) => {
   return (
     <div className="client-details-section">
-      <h3>Client Details</h3>
+    
       <div className="section-content">
-        <p><strong>Legal Name:</strong> {name}</p>
-        <p><strong>Main Address:</strong> {address}</p>
-        <p><strong>Website:</strong> <a href={`https://${website}`} target="_blank" rel="noopener noreferrer">{website}</a></p>
+        <h4><strong> {name}</strong></h4>
+        <p> {address}</p>
+        <p><span> 
+          <a href={`https://${website}`} target="_blank" rel="noopener noreferrer">{website}</a>
+          <div className="client-card-actions">
+            <button className="edit-btn">Edit</button>
+            <button className="delete-btn">Delete</button>
+            <button className="archive-btn">Archive</button>
+          </div>
+        </span></p>
       </div>
     </div>
   );
 };
 
-const ContactSection = ({ name, email, phone }) => {
+const ContactSection = ({ name, email, phone, ext }) => {
   return (
     <div className="contact-section">
-      <h3>Contact Information</h3>
+      
       <div className="section-content">
-        <p><strong>Name:</strong> {name}</p>
-        <p><strong>Email:</strong> <a href={`mailto:${email}`}>{email}</a></p>
-        <p><strong>Phone:</strong> {phone}</p>
+        <p><strong> {name}</strong></p>
+        <p> {phone} ext:{ext}</p>
+        <p> <span><a href={`mailto:${email}`}>{email}</a>
+          <div className="client-card-actions">
+            <button className="edit-btn">Edit</button>
+            <button className="delete-btn">Delete</button>
+          </div>
+            </span></p>
+        
       </div>
     </div>
   );
@@ -357,9 +372,9 @@ const ContactSection = ({ name, email, phone }) => {
 const SalesRepSection = ({ name, office, email, phone }) => {
   return (
     <div className="sales-rep-section">
-      <h3>Assigned Sales Representative</h3>
+      
       <div className="section-content">
-        <p><strong>Name:</strong> {name || 'None assigned'}</p>
+        <p><strong>Sales Rep:</strong> {name || 'None assigned'}</p>
         {name && (
           <>
             <p><strong>Office:</strong> {office}</p>
@@ -374,7 +389,7 @@ const SalesRepSection = ({ name, office, email, phone }) => {
 const ContractsSection = ({ contracts }) => {
   return (
     <div className="contracts-section">
-      <h3>Contracts</h3>
+     
       {contracts.length > 0 ? (
         <table className="contracts-table">
           <thead>
@@ -408,18 +423,10 @@ const ClientCard = ({ client }) => {
 
   return (
     <div className="client-card">
-      <div className="client-card-header">
-        <h2>{client.name}</h2>
-        <div className="client-card-actions">
-          <button className="edit-btn">Edit</button>
-          <button className="delete-btn">Delete</button>
-          <button className="archive-btn">Archive</button>
-        </div>
-      </div>
-      
+           
       <div className="client-card-content">
         <ClientDetails 
-          name={client.name} 
+          name={client.name}
           address={client.address} 
           website={client.website} 
         />
@@ -632,7 +639,7 @@ const AddClientModal = ({ isOpen, onClose }) => {
             </div>
             
             <div className="form-group">
-              <label>Lifecycle Stage*</label>
+              <label>Lifecycle*</label>
               <select
                 name="lifecycleStage"
                 value={formData.lifecycleStage}
@@ -808,8 +815,8 @@ const ClientScreen = () => {
         <div className="client-details-container">
           {selectedClient ? (
             <>
-              <ProjectsBox clientId={selectedClient.id} />
               <ClientCard client={selectedClient} />
+              <ProjectsBox clientId={selectedClient.id} />
             </>
           ) : (
             <div className="no-selection-placeholder">
