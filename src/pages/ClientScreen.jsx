@@ -1,7 +1,10 @@
 // src/pages/ClientScreen.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faUser, faCog, faSearch, faChevronRight } from '@fortawesome/free-solid-svg-icons'; 
+import supabase from '../config/supabaseClient'; 
+
+
 
 // Mock data
 const mockClients = [
@@ -140,6 +143,7 @@ const Breadcrumb = () => {
 };
 //page-hero component
 const PageHeader = () => {
+  console.log (supabase)
   return (
     <div className="page-header">
       <h1 className="page-title">My Clients</h1>
@@ -252,6 +256,8 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
   const [sortDirection, setSortDirection] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
 
+
+
   // Filter clients based on search term
   const filteredClients = clients.filter(client => 
     client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -276,9 +282,10 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
     }
   };
 
+
+
   return (
     <div className="client-list">
-     
       <div className="client-table-container">
         <table className="client-table">
           <thead className="client-table-header">
@@ -791,6 +798,29 @@ const ClientScreen = () => {
     client.name.toLowerCase().includes(searchValue.toLowerCase()) ||
     client.contactName.toLowerCase().includes(searchValue.toLowerCase())
   );
+
+  const [fetchError, setFetchError] = useState(null);
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    const fetchClients = async () => {
+      const { data, error } = await supabase
+        .from('clients')
+        .select();
+
+      if (error) {
+        setFetchError('Could not fetch client');
+        setClients(null);
+        console.log(error);
+      }
+      if (data) {
+        setClients(data);
+        setFetchError(null);
+      }
+    };
+
+    fetchClients();
+  }, []);
   
   return (
     <MainLayout>
