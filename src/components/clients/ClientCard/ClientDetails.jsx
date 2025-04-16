@@ -4,11 +4,18 @@ import React from 'react';
 const ClientDetails = ({ name, address, website }) => {
   return (
     <div className="client-details-section">
-      <h3>Client Details</h3>
+    
       <div className="section-content">
-        <p><strong>Legal Name:</strong> {name}</p>
-        <p><strong>Main Address:</strong> {address}</p>
-        <p><strong>Website:</strong> <a href={`https://${website}`} target="_blank" rel="noopener noreferrer">{website}</a></p>
+        <h4><strong> {name}</strong></h4>
+        <p> {address}</p>
+        <p><span> 
+          <a href={`https://${website}`} target="_blank" rel="noopener noreferrer">{website}</a>
+          <div className="client-card-actions">
+            <button className="edit-btn">Edit</button>
+            <button className="delete-btn">Delete</button>
+            <button className="archive-btn">Archive</button>
+          </div>
+        </span></p>
       </div>
     </div>
   );

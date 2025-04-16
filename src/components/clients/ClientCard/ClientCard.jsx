@@ -12,18 +12,10 @@ const ClientCard = ({ client }) => {
 
   return (
     <div className="client-card">
-      <div className="client-card-header">
-        <h2>{client.name}</h2>
-        <div className="client-card-actions">
-          <button className="edit-btn">Edit</button>
-          <button className="delete-btn">Delete</button>
-          <button className="archive-btn">Archive</button>
-        </div>
-      </div>
-      
+           
       <div className="client-card-content">
         <ClientDetails 
-          name={client.name} 
+          name={client.name}
           address={client.address} 
           website={client.website} 
         />

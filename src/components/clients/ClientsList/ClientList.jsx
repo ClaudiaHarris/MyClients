@@ -1,13 +1,14 @@
-// src/components/clients/ClientList/ClientList.jsx
+// TODO: do I want to import CSS?
+
 import React, { useState } from 'react';
 import ClientRow from './ClientRow';
 import SearchBar from './SearchBar';
 import Button from '../../common/Button';
 
 const ClientList = ({ clients, onClientSelect, onAddNew }) => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [sortField, setSortField] = useState('name');
   const [sortDirection, setSortDirection] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Filter clients based on search term
   const filteredClients = clients.filter(client => 
@@ -33,18 +34,13 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
     }
   };
 
+
+
   return (
     <div className="client-list">
-      <div className="client-list-header">
-        <h2>Clients</h2>
-        <Button onClick={onAddNew}>Add New Client</Button>
-      </div>
-      
-      <SearchBar value={searchTerm} onChange={setSearchTerm} />
-      
       <div className="client-table-container">
         <table className="client-table">
-          <thead>
+          <thead className="client-table-header">
             <tr>
               <th onClick={() => handleSort('name')}>
                 Client Name
@@ -55,7 +51,7 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
                 {sortField === 'contactName' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th onClick={() => handleSort('lifecycleStage')}>
-                Lifecycle Stage
+                Lifecycle
                 {sortField === 'lifecycleStage' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th onClick={() => handleSort('salesRep')}>
@@ -75,7 +71,7 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
               <ClientRow 
                 key={client.id} 
                 client={client} 
-                onSelect={() => onClientSelect(client)} 
+                onSelect={onClientSelect} 
               />
             ))}
             {sortedClients.length === 0 && (

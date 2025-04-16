@@ -1,10 +1,10 @@
-// src/components/clients/ClientCard/ContractsSection.jsx
+
 import React from 'react';
 
 const ContractsSection = ({ contracts }) => {
   return (
     <div className="contracts-section">
-      <h3>Contracts</h3>
+     
       {contracts.length > 0 ? (
         <table className="contracts-table">
           <thead>
@@ -30,5 +30,4 @@ const ContractsSection = ({ contracts }) => {
     </div>
   );
 };
-
 export default ContractsSection;

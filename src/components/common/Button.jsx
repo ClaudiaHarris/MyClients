@@ -1,21 +1,12 @@
-// src/components/common/Button.jsx
+//TODO: add button CSS?
 import React from 'react';
 
-const Button = ({ 
-  children, 
-  onClick, 
-  type = 'button', 
-  variant = 'primary', 
-  size = 'medium',
-  disabled = false,
-  className = ''
-}) => {
+const Button = ({ children, onClick, variant = 'primary', type = 'button' }) => {
   return (
     <button
       type={type}
       onClick={onClick}
-      disabled={disabled}
-      className={`btn btn-${variant} btn-${size} ${className}`}
+      className={`btn btn-${variant}`}
     >
       {children}
     </button>

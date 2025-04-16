@@ -4,9 +4,9 @@ import React from 'react';
 const SalesRepSection = ({ name, office, email, phone }) => {
   return (
     <div className="sales-rep-section">
-      <h3>Assigned Sales Representative</h3>
+      
       <div className="section-content">
-        <p><strong>Name:</strong> {name || 'None assigned'}</p>
+        <p><strong>Sales Rep:</strong> {name || 'None assigned'}</p>
         {name && (
           <>
             <p><strong>Office:</strong> {office}</p>
@@ -17,5 +17,6 @@ const SalesRepSection = ({ name, office, email, phone }) => {
     </div>
   );
 };
+
 
 export default SalesRepSection;

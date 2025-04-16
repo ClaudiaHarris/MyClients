@@ -28,9 +28,12 @@ const ProjectList = ({ projects }) => {
                 <td>{project.startDate}</td>
                 <td>{project.endDate}</td>
                 <td>
-                  <a href="#" className="support-tickets-link">
+                  <button 
+                    className="support-tickets-link"
+                    onClick={() => alert(`View ${project.supportTickets} support tickets`)}
+                  >
                     {project.supportTickets} tickets
-                  </a>
+                  </button>
                 </td>
                 <td className="actions">
                   <button className="edit-btn">Edit</button>
