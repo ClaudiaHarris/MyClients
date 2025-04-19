@@ -1,7 +1,7 @@
 /* MainLayout specific styles */
 .main-layout {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.897) 0%, rgba(0, 0, 0, 0) 30%);
-  height: 100vh;
+  height: 80%;
   margin: 0 0;
   display: flex;
   flex-direction: column;
@@ -59,28 +59,104 @@
   border-radius: 8px;
 }
 
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.5rem;
+  min-width: 73;
+}
 
 /* Bento box layout styles */
 .client-screen-container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: auto;
+  grid-template-columns: 2fr 1fr 1fr;
+  
   gap: 20px;
-  height: calc(100vh - 180px); /* Subtract navbar and footer height */
+  height: 80vh; 
+  margin-bottom: 0;
 }
 
+
 .client-list-container {
+  
   background-color: var(--medium-gray);
   border-radius: 8px;
   padding:0;
   padding-top: 0;
 }
 
-.client-details-container {
+.client-card {
+  height: 100vh;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+
+.client-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.client-card-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  justify-content: flex-end;
+  margin-left: auto;
+  transform: translatey(-100%);
+}
+
+.client-card-content, .projects-card-content {
+  background-color: var(--white);
+  border-radius: 8px;
+  flex-direction: column;
+  padding: var(--spacing-md) var(--spacing-md);
+  flex: 1;
+  overflow-y: auto;
+}
+
+.client-card-content p {
+  font-size: 0.8rem;
+}
+
+
+.client-details-container, .projects-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
+
+/* Projects Box */
+.projects-card-content {
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.projects-card-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
 
 .footer {
   text-align: center;

@@ -12,8 +12,7 @@ const ProjectList = ({ projects }) => {
               <th>Status</th>
               <th>Start Date</th>
               <th>End Date</th>
-              <th>Support Tickets</th>
-              <th>Actions</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -27,18 +26,8 @@ const ProjectList = ({ projects }) => {
                 </td>
                 <td>{project.startDate}</td>
                 <td>{project.endDate}</td>
-                <td>
-                  <button 
-                    className="support-tickets-link"
-                    onClick={() => alert(`View ${project.supportTickets} support tickets`)}
-                  >
-                    {project.supportTickets} tickets
-                  </button>
-                </td>
-                <td className="actions">
-                  <button className="edit-btn">Edit</button>
-                  <button className="delete-btn">Delete</button>
-                </td>
+               
+                
               </tr>
             ))}
           </tbody>

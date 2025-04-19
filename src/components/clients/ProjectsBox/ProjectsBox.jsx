@@ -17,25 +17,29 @@ const ProjectsBox = ({ clientId }) => {
 
   return (
     <div className="projects-box">
-      <div className="projects-box-header">
-        <h2>Projects</h2>
-        <div className="projects-box-actions">
-          <button className="add-project-btn">Add Project</button>
+
+      <div className="projects-card-content">
+
+        <div className="projects-card-header">
+          <h2>Projects</h2>
+          
         </div>
+
+        <ProjectTabs 
+          activeTab={activeTab} 
+          onTabChange={setActiveTab} 
+          projectCounts={{
+            all: clientProjects.length,
+            pending: clientProjects.filter(p => p.status === 'pending').length,
+            active: clientProjects.filter(p => p.status === 'active').length,
+            closed: clientProjects.filter(p => p.status === 'closed').length
+          }}
+        />
+        
+        <ProjectList projects={filteredProjects} />
+
       </div>
 
-      <ProjectTabs 
-        activeTab={activeTab} 
-        onTabChange={setActiveTab} 
-        projectCounts={{
-          all: clientProjects.length,
-          pending: clientProjects.filter(p => p.status === 'pending').length,
-          active: clientProjects.filter(p => p.status === 'active').length,
-          closed: clientProjects.filter(p => p.status === 'closed').length
-        }}
-      />
-      
-      <ProjectList projects={filteredProjects} />
     </div>
   );
 };

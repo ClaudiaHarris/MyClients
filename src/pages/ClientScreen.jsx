@@ -1,22 +1,11 @@
 // src/pages/ClientScreen.jsx
 import React, { useEffect, useState } from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faUser, faCog, faSearch, faChevronRight } from '@fortawesome/free-solid-svg-icons'; 
 import supabase from '../config/supabaseClient'; 
 import MainLayout from '../components/layout/MainLayout'; // Assuming you have a MainLayout component
-import Button from '../components/common/Button'; // Assuming you have a Button component
-import SearchBar from '../components/common/SearchBar'; // Assuming you have a SearchBar component
-import ClientDetails from '../components/clients/ClientCard/ClientDetails'; // Assuming you have a ClientDetails component
 import ClientList from '../components/clients/ClientsList/ClientList'; // Assuming you have a ClientList component
-import ContactSection from '../components/clients/ClientCard/ContactSection'; // Assuming you have a ContactSection component
-import SalesRepSection from '../components/clients/ClientCard/SalesRepSection'; // Assuming you have a SalesRepSection component
-import ContractsSection from '../components/clients/ClientCard/ContractsSection'; // Assuming you have a ContractsSection component
 import ClientCard from '../components/clients/ClientCard/ClientCard'; // Assuming you have a ClientCard component
-import ProjectTabs from '../components/clients/ProjectsBox/ProjectTabs'; // Assuming you have a ProjectTabs component
-import ProjectList from '../components/clients/ProjectsBox/ProjectList'; // Assuming you have a ProjectList component
 import ProjectsBox from '../components/clients/ProjectsBox/ProjectsBox'; // Assuming you have a ProjectsBox component
 import AddClientModal from '../components/modal/AddClientModal'; // Assuming you have an AddClientModal component
-import AddClientButton from '../components/modal/AddClientButton'; // Assuming you have an AddClientButton component
 import ClientListActions from '../components/clients/ClientsList/ClientListActions'; // Assuming you have a ClientListActions component
 // Mock data
 const mockClients = [
@@ -184,6 +173,7 @@ const ClientScreen = () => {
     
 
       <div className="client-screen-container">
+
         <div className="client-list-container">
           <ClientListActions 
             onAddNew={() => setIsAddModalOpen(true)}
@@ -197,12 +187,11 @@ const ClientScreen = () => {
           />
         </div>
         
-        {/* Right side: Client details and Projects */}
+        {/* Middle: Client details */}
         <div className="client-details-container">
           {selectedClient ? (
             <>
               <ClientCard client={selectedClient} />
-              <ProjectsBox clientId={selectedClient.id} />
             </>
           ) : (
             <div className="no-selection-placeholder">
@@ -210,6 +199,22 @@ const ClientScreen = () => {
             </div>
           )}
         </div>
+
+        {/* Left: Projects */}
+
+        <div className="projects-container">
+          {selectedClient ? (
+            <>
+              <ProjectsBox clientId={selectedClient.id} />
+            </>
+          ) : (
+            <div className="no-selection-placeholder">
+              Select a client to view projects
+            </div>
+          )}
+        </div>
+
+
       </div>
       
       <AddClientModal 

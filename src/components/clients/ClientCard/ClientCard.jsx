@@ -14,6 +14,7 @@ const ClientCard = ({ client }) => {
     <div className="client-card">
            
       <div className="client-card-content">
+        
         <ClientDetails 
           name={client.name}
           address={client.address} 

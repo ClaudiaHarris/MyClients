@@ -6,7 +6,7 @@ const ClientDetails = ({ name, address, website }) => {
     <div className="client-details-section">
     
       <div className="section-content">
-        <h4><strong> {name}</strong></h4>
+        <h2> {name}</h2>
         <p> {address}</p>
         <p><span> 
           <a href={`https://${website}`} target="_blank" rel="noopener noreferrer">{website}</a>
