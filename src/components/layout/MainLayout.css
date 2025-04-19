@@ -1,4 +1,11 @@
 /* MainLayout specific styles */
+.main-layout {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.897) 0%, rgba(0, 0, 0, 0) 30%);
+  height: 100vh;
+  margin: 0 0;
+  display: flex;
+  flex-direction: column;
+}
 .content-container {
   flex: 1;
   padding: 20px;
@@ -8,18 +15,55 @@
   gap: 20px;
 }
 
-h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--wheat);
-  margin-left: 30px;
-  padding: 10px;
+.main-content {
+  flex: 1;
+  padding: 0;
+  margin: 0 2rem;;
 }
+
+.mainlayout-header {
+  margin: 0 2rem 0 2rem;
+}
+
+.header-logo {
+  position: static;
+  top: var(--spacing-md);
+  margin-right: 0;
+  z-index: 1001;
+}
+
+.page-header{
+ display: flex;
+ justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+.page-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--white);
+  padding: 0;
+}
+
+.breadcrumb {
+  margin-left: 0;
+  padding-top: 10px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  background-color: var(--light-gray);
+  border-radius: 8px;
+}
+
 
 /* Bento box layout styles */
 .client-screen-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-rows: auto;
   gap: 20px;
   height: calc(100vh - 180px); /* Subtract navbar and footer height */
@@ -28,8 +72,8 @@ h1 {
 .client-list-container {
   background-color: var(--medium-gray);
   border-radius: 8px;
-  padding: 20px;
-  overflow: auto;
+  padding:0;
+  padding-top: 0;
 }
 
 .client-details-container {

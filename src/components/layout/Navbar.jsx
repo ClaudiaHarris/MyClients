@@ -2,6 +2,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCog } from '@fortawesome/free-solid-svg-icons';
+import './Navbar.css'; // Assuming you have a CSS file for styling
 
 const Navbar = () => {
   return (
@@ -20,7 +21,9 @@ const Navbar = () => {
         <button className="settings">
           <FontAwesomeIcon icon={faCog} className="settings-icon"/> 
         </button>
-        
+        <div className="header-logo">
+          <img src="/globaltech-logo-light.svg" alt="GlobalTech Logo" className="logo" />
+        </div>
       </div>
     </nav>
   );

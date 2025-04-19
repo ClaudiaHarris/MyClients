@@ -1,19 +1,32 @@
 // src/components/layout/MainLayout.jsx
 import React from 'react';
-import Navbar from './Navbar';
+import './MainLayout.css'; // Import your CSS file for styling
+import Footer from './Footer';
+import PageHeader from '../common/PageHeader';
+import Breadcrumb from './Breadcrumb';
 
-const MainLayout = ({ children }) => {
+
+const MainLayout = ({ children, pageTitle }) => {
+
   return (
     <div className="main-layout">
-      <Navbar />
-      <div className="header-logo">
-        <img src="/globaltech-logo-light.svg" alt="GlobalTech Logo" className="logo" />
+
+      <div className="mainlayout-header">
+        <Breadcrumb /> 
+        <PageHeader title={pageTitle} />
       </div>
-      
+
       <main className="main-content">
         {children}
       </main>
-    </div>
+
+      <div className="mainlayout-footer">
+        <Footer />
+      </div>
+
+    </div>  
   );
 };
+
+
 export default MainLayout;

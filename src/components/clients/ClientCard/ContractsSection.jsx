@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const ContractsSection = ({ contracts }) => {
@@ -6,24 +5,15 @@ const ContractsSection = ({ contracts }) => {
     <div className="contracts-section">
      
       {contracts.length > 0 ? (
-        <table className="contracts-table">
-          <thead>
-            <tr>
-              <th>Contract Type</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contracts.map(contract => (
-              <tr key={contract.id}>
-                <td>{contract.type}</td>
-                <td>{contract.startDate}</td>
-                <td>{contract.endDate}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div>
+          {contracts.map(contract => (
+            <div key={contract.id}>
+              <p><strong>Type: </strong>{contract.type}</p>
+              <p><strong>Start Date: </strong>{contract.startDate}</p>
+              <p><strong>End Date: </strong>{contract.endDate}</p>
+            </div>
+          ))}
+        </div>
       ) : (
         <p className="no-contracts-message">No contracts available</p>
       )}

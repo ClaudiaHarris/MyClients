@@ -1,6 +1,6 @@
 import React from 'react';
-import AddClientButton from './AddClientButton';
-import SearchBar from './SearchBar';
+import AddClientButton from '../../modal/AddClientButton';
+import SearchBar from '../../common/SearchBar';
 
 const ClientListActions = ({ onAddNew, searchValue, onSearchChange }) => {
   return (

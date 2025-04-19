@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import ClientRow from './ClientRow';
-import SearchBar from './SearchBar';
+import SearchBar from '../../common/SearchBar';
 import Button from '../../common/Button';
 
 const ClientList = ({ clients, onClientSelect, onAddNew }) => {

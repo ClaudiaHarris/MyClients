@@ -4,12 +4,12 @@ import ClientDetails from './ClientDetails';
 import ContactSection from './ContactSection';
 import SalesRepSection from './SalesRepSection';
 import ContractsSection from './ContractsSection';
-import { mockSalesReps } from '../../../data/mockData';
+import { mockSalesReps, mockContracts } from '../../../data/mockData';
 
 const ClientCard = ({ client }) => {
   // Find the sales rep details from our mock data
   const salesRep = mockSalesReps.find(rep => rep.name === client.salesRep) || {};
-
+  const clientContracts = mockContracts.filter(contract => client.contracts.includes(contract.id));
   return (
     <div className="client-card">
            
@@ -33,7 +33,7 @@ const ClientCard = ({ client }) => {
           phone={salesRep.phone} 
         />
         
-        <ContractsSection contracts={client.contracts} />
+        <ContractsSection contracts={clientContracts} />
       </div>
     </div>
   );

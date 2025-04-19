@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from '/Button';
+import  Button  from '../common/Button';
+import { mockSalesReps } from '../../data/mockData'; // Mock data for sales representatives
 
 const AddClientModal = ({ isOpen, onClose }) => {
 
