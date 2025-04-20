@@ -1,10 +1,8 @@
-// TODO: do I want to import CSS?
-
 import React, { useState } from 'react';
 import ClientRow from './ClientRow';
 import './ClientList.css'; // Import your CSS file for styling
 
-const ClientList = ({ clients, onClientSelect, onAddNew }) => {
+const ClientList = ({ clients, onClientSelect, onAddNew, onEdit }) => {
   const [sortField, setSortField] = useState('name');
   const [sortDirection, setSortDirection] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,7 +31,15 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
     }
   };
 
-
+  // Handler for editing a client
+  const handleEdit = (client) => {
+    if (onEdit) {
+      onEdit(client);
+    } else {
+      // Default: log or alert
+      alert(`Edit client: ${client.name}`);
+    }
+  };
 
   return (
     <div className="client-list">
@@ -71,6 +77,7 @@ const ClientList = ({ clients, onClientSelect, onAddNew }) => {
                 key={client.id} 
                 client={client} 
                 onSelect={onClientSelect} 
+                onEdit={handleEdit}
               />
             ))}
             {sortedClients.length === 0 && (

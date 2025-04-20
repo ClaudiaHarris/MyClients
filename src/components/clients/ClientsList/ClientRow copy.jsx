@@ -1,8 +1,7 @@
+
 import React from 'react';
-import ClientRowActions from './ClientRowActions';
 
-const ClientRow = ({ client, onSelect, onEdit }) => {
-
+const ClientRow = ({ client, onSelect }) => {
   return (
     <tr onClick={() => onSelect(client)} className="client-row">
       <td>{client.name}</td>
@@ -15,14 +14,25 @@ const ClientRow = ({ client, onSelect, onEdit }) => {
       <td>{client.salesRep}</td>
       <td>{client.office}</td>
       <td>{client.email}</td>
-
       <td className="actions">
-        <ClientRowActions 
-          onEdit={e => {
+        <button 
+          onClick={(e) => {
             e.stopPropagation(); // Prevent row selection
-            onEdit(client);
+            alert(`Edit ${client.name}`); 
           }}
-        />
+          className="edit-btn"
+        >
+          Edit
+        </button>
+        <button 
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent row selection
+            alert(`Delete ${client.name}`);
+          }}
+          className="delete-btn"
+        >
+          Delete
+        </button>
       </td>
     </tr>
   );

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import  Button  from '../common/Button';
 import { mockSalesReps } from '../../data/mockData'; // Mock data for sales representatives
 import './Modal.css'; // Import your CSS styles
-const AddClientModal = ({ isOpen, onClose }) => {
+const AddClientModal = ({ isOpen, onClose, selectedClient }) => {
 
   const [formData, setFormData] = useState({
     name: '',
@@ -15,6 +15,35 @@ const AddClientModal = ({ isOpen, onClose }) => {
     office: 'NY',
     website: ''
   });
+
+  //prefill for edit
+  useEffect(() => {
+    if (selectedClient) {
+      setFormData({
+        name: selectedClient.name || '',
+        lifecycleStage: selectedClient.lifecycleStage || 'lead',  
+        address: selectedClient.address || '',
+        contactName: selectedClient.contactName || '',
+        contactPhone: selectedClient.contactPhone || '',
+        contactEmail: selectedClient.contactEmail || '',
+        salesRep: selectedClient.salesRep || '',
+        office: selectedClient.office || 'NY',
+        website: selectedClient.website || ''
+      });
+    } else {
+      setFormData({
+        name: '',
+        lifecycleStage: 'lead',
+        address: '',
+        contactName: '',
+        contactPhone: '',
+        contactEmail: '',
+        salesRep: '',
+        office: 'NY',
+        website: ''
+      });
+    }
+  }, [selectedClient]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -40,101 +69,110 @@ const AddClientModal = ({ isOpen, onClose }) => {
     <div className="modal-overlay">
       <div className="modal">
         <div className="modal-header">
-          <h2>Add New Client</h2>
+          <h2>Add or Update Client</h2>
           <button className="close-btn" onClick={onClose}>×</button>
         </div>
         <form onSubmit={handleSubmit}>
+
           <div className="modal-body">
-            <div className="form-group">
-              <label>Business Name*</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="form-control"
-              />
-            </div>
-            
-            <div className="form-group">
-              <label>Lifecycle*</label>
-              <select
-                name="lifecycleStage"
-                value={formData.lifecycleStage}
-                onChange={handleChange}
-                required
-                className="form-control"
-              >
-                <option value="lead">Lead</option>
-                <option value="prospect">Prospect</option>
-                <option value="client">Client</option>
-              </select>
-            </div>
-            
-            <div className="form-group">
-              <label>Main Address</label>
-              <textarea
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                className="form-control"
-                rows="3"
-              />
-            </div>
-            
-            <div className="form-group">
-              <label>Website</label>
-              <input
-                type="url"
-                name="website"
-                value={formData.website}
-                onChange={handleChange}
-                className="form-control"
-                placeholder="www.example.com"
-              />
-            </div>
-            
-            <div className="form-section">
-              <h3>Contact Information</h3>
-              
+
+            <div className="modal-section">
               <div className="form-group">
-                <label>Contact Name*</label>
+                <label>Business Name*</label>
                 <input
                   type="text"
-                  name="contactName"
-                  value={formData.contactName}
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
                   required
                   className="form-control"
                 />
               </div>
-              
+            
               <div className="form-group">
-                <label>Contact Phone</label>
-                <input
-                  type="tel"
-                  name="contactPhone"
-                  value={formData.contactPhone}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div>
-              
-              <div className="form-group">
-                <label>Contact Email*</label>
-                <input
-                  type="email"
-                  name="contactEmail"
-                  value={formData.contactEmail}
+                <label>Lifecycle*</label>
+                <select
+                  name="lifecycleStage"
+                  value={formData.lifecycleStage}
                   onChange={handleChange}
                   required
                   className="form-control"
+                >
+                  <option value="lead">Lead</option>
+                  <option value="prospect">Prospect</option>
+                  <option value="client">Client</option>
+                </select>
+              </div>
+            
+              <div className="form-group">
+                <label>Main Address</label>
+                <textarea
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className="form-control"
+                  rows="2"
                 />
+              </div>
+            
+              <div className="form-group">
+                <label>Website</label>
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="www.example.com"
+                />
+              </div>
+
+            </div>
+            
+
+            <div className="modal-section">
+             
+              <div className="form-section">
+                <h3>Contact Information</h3>
+                
+                <div className="form-group">
+                  <label>Contact Name*</label>
+                  <input
+                    type="text"
+                    name="contactName"
+                    value={formData.contactName}
+                    onChange={handleChange}
+                    required
+                    className="form-control"
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label>Contact Phone</label>
+                  <input
+                    type="tel"
+                    name="contactPhone"
+                    value={formData.contactPhone}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label>Contact Email*</label>
+                  <input
+                    type="email"
+                    name="contactEmail"
+                    value={formData.contactEmail}
+                    onChange={handleChange}
+                    required
+                    className="form-control"
+                  />
+                </div>
               </div>
             </div>
             
-            <div className="form-section">
+            <div className="modal-section">
               <h3>Assignment</h3>
               
               <div className="form-group">
@@ -167,15 +205,16 @@ const AddClientModal = ({ isOpen, onClose }) => {
                 </select>
               </div>
             </div>
-          </div>
           
-          <div className="modal-footer">
-            <Button type="button" variant="secondary" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit" variant="primary">
-              Add Client
-            </Button>
+          
+            <div className="modal-footer">
+              <Button type="button" variant="secondary" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="primary">
+                Submit
+              </Button>
+            </div>
           </div>
         </form>
       </div>

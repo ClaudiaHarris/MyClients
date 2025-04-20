@@ -7,6 +7,7 @@ import ClientCard from '../components/clients/ClientCard/ClientCard'; // Assumin
 import ProjectsBox from '../components/clients/ProjectsBox/ProjectsBox'; // Assuming you have a ProjectsBox component
 import AddClientModal from '../components/modal/AddClientModal'; // Assuming you have an AddClientModal component
 import ClientListActions from '../components/clients/ClientsList/ClientListActions'; // Assuming you have a ClientListActions component
+
 // Mock data
 const mockClients = [
   {
@@ -134,9 +135,11 @@ const mockContracts = [
   { id: 589, clientId: 4, type: "Cloud Services", startDate: "2023-06-15", endDate: "2024-06-15" }
 ]
 
+
 // Main ClientScreen component
 const ClientScreen = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false); // New state for edit modal
   const [selectedClient, setSelectedClient] = useState(null);
   const [searchValue, setSearchValue] = useState('');
 
@@ -168,6 +171,12 @@ const ClientScreen = () => {
     fetchClients();
   }, []);
   
+  const handleEditClient = (client) => {
+    setSelectedClient(client);
+    setIsEditModalOpen(true);
+  };
+  
+
   return (
     <MainLayout pageTitle="My Clients"> 
     
@@ -184,6 +193,7 @@ const ClientScreen = () => {
             clients={filteredClients}
             onClientSelect={setSelectedClient}
             onAddNew={() => setIsAddModalOpen(true)}
+            onEdit={handleEditClient} 
           />
         </div>
         
@@ -218,8 +228,13 @@ const ClientScreen = () => {
       </div>
       
       <AddClientModal 
-        isOpen={isAddModalOpen} 
-        onClose={() => setIsAddModalOpen(false)}
+        isOpen={isAddModalOpen || isEditModalOpen} 
+        onClose={() => {
+          setIsAddModalOpen(false);
+          setIsEditModalOpen(false);
+          setSelectedClient(null);
+        }}
+        selectedClient={isEditModalOpen ? selectedClient : null} // Pass client only for edit
       />
     </MainLayout>
   );

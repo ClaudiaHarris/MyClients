@@ -7,12 +7,12 @@ const ContactSection = ({ name, email, phone, ext }) => {
       <div className="section-content">
         <p><strong> {name}</strong></p>
         <p> {phone} ext:{ext}</p>
-        <p> <span><a href={`mailto:${email}`}>{email}</a>
+        <div> <span><a href={`mailto:${email}`}>{email}</a>
           <div className="client-card-actions">
             <button className="edit-btn">Edit</button>
             <button className="delete-btn">Delete</button>
           </div>
-            </span></p>
+            </span></div>
         
       </div>
     </div>

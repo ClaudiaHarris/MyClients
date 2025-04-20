@@ -14,6 +14,8 @@
 
 /* Modal container */
 .modal-container {
+  
+  grid-template-columns: 1fr 1fr 1fr;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -25,6 +27,8 @@
 }
 
 .modal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -36,10 +40,16 @@
   flex-direction: column;
 }
 
+.modal-section {
+  display: 1fr;
+
+  gap: 1.5rem;
+}
+
 .modal .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
 }
 
 .modal .form-control {
@@ -77,13 +87,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
   border-bottom: 1px solid var(--light-grey);
 }
 
 .modal-title {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #B3DFD7; /* Light teal from design spec */
 }
 
@@ -95,7 +105,7 @@
 .modal-close-button {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
   color: var(--medium-grey);
   line-height: 1;
