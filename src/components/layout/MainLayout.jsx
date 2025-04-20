@@ -2,7 +2,7 @@
 import React from 'react';
 import './MainLayout.css'; // Import your CSS file for styling
 import Footer from './Footer';
-import PageHeader from '../common/PageHeader';
+import PageHeader from './PageHeader';
 import Breadcrumb from './Breadcrumb';
 
 

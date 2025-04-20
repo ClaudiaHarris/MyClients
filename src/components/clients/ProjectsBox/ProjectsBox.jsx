@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ProjectTabs from './ProjectTabs';
 import ProjectList from './ProjectList';
 import { mockProjects } from '../../../data/mockData';
-
+import './ProjectsBox.css'; // Import your CSS styles
 const ProjectsBox = ({ clientId }) => {
   const [activeTab, setActiveTab] = useState('all');
   

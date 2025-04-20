@@ -52,6 +52,33 @@
   cursor: pointer;
 }
 
+.nav-button-links {
+  display: flex;
+  list-style: none;
+  margin-left: auto;
+}
+
+.nav-button-link {
+  color: var(--white);
+  text-decoration: none;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-button-link:hover,.nav-button-link.active {
+  color: var(--light-teal);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+
 .nav-link:hover {
   background-color: var(--medium-gray);
   color: var(--white);
@@ -63,10 +90,40 @@
   font-weight: bold;
 }
 
-.user-controls {
-  display: flex;
-  align-items: center;
+.settings {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  
 }
+.settings-icon {
+  color: var(--white);
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.settings:hover .settings-icon {
+  color: var(--light-teal); 
+}
+
+.user-profile {
+  background: transparent;
+  color: var(--white);
+  padding-left: var(--spacing-lg);
+  border:none;
+  cursor: pointer;
+}
+
+.user-profile:hover {
+  color: var(--light-teal);
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+
 
 .logout-button {
   background-color: var(--rustic-red);

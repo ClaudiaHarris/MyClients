@@ -1,11 +1,14 @@
 /* MainLayout specific styles */
+
+/* ===== Layout Containers ===== */
 .main-layout {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.897) 0%, rgba(0, 0, 0, 0) 30%);
   height: 80%;
-  margin: 0 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
 }
+
 .content-container {
   flex: 1;
   padding: 20px;
@@ -18,7 +21,7 @@
 .main-content {
   flex: 1;
   padding: 0;
-  margin: 0 2rem;;
+  margin: 0 2rem;
 }
 
 .mainlayout-header {
@@ -32,9 +35,9 @@
   z-index: 1001;
 }
 
-.page-header{
- display: flex;
- justify-content: space-between;
+.page-header {
+  display: flex;
+  justify-content: space-between;
   gap: var(--spacing-lg);
 }
 
@@ -45,119 +48,86 @@
   padding: 0;
 }
 
+/* ===== Breadcrumb ===== */
 .breadcrumb {
   margin-left: 0;
   padding-top: 10px;
 }
 
+.breadcrumb-item {
+  color: var(--teal);
+  text-decoration: none;
+}
+.breadcrumb-item:hover,
+.breadcrumb-item.active {
+  text-decoration: underline;
+}
+
+/* ===== Search Bar ===== */
 .search-bar {
+  position: relative;
   display: flex;
   align-items: center;
+ 
   justify-content: space-between;
   padding: 0 10px;
   background-color: var(--light-gray);
   border-radius: 8px;
 }
 
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.5rem;
-  min-width: 73;
+.search-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-sm) calc(var(--spacing-md) * 2);
+  border-radius: 25px;
+  border: 1px solid var(--light-grey);
+  background-color: #1a1b2e;
+  color: var(--white);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Bento box layout styles */
+.search-input:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(41, 126, 111, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  color: var(--medium-grey);
+  pointer-events: none;
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: var(--spacing-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--medium-grey);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-search-btn:hover {
+  color: var(--rustic-red, #B4362A);
+}
+
+/* ===== Bento Box Layout ===== */
 .client-screen-container {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  
   gap: 20px;
-  height: 80vh; 
+  height: 80vh;
   margin-bottom: 0;
 }
-
-
-.client-list-container {
   
-  background-color: var(--medium-gray);
-  border-radius: 8px;
-  padding:0;
-  padding-top: 0;
-}
-
-.client-card {
-  height: 100vh;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
- 
-}
-
-
-.client-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
-  gap: var(--spacing-md);
-}
-
-.client-card-actions {
-  display: flex;
-  gap: var(--spacing-xs);
-  justify-content: flex-end;
-  margin-left: auto;
-  transform: translatey(-100%);
-}
-
-.client-card-content, .projects-card-content {
-  background-color: var(--white);
-  border-radius: 8px;
-  flex-direction: column;
-  padding: var(--spacing-md) var(--spacing-md);
-  flex: 1;
-  overflow-y: auto;
-}
-
-.client-card-content p {
-  font-size: 0.8rem;
-}
-
-
-.client-details-container, .projects-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-/* Projects Box */
-.projects-card-content {
-  background-color: var(--white);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.projects-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--light-grey);
-}
-
-.projects-card-actions {
-  display: flex;
-  gap: var(--spacing-xs);
-}
-
-
+/* ===== Footer ===== */
 .footer {
   text-align: center;
   padding: 10px;
@@ -166,8 +136,7 @@
   font-size: 0.8rem;
 }
 
-
-/* Media queries for responsive layout if needed later */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
   .client-screen-container {
     grid-template-columns: 1fr;

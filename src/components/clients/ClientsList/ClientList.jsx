@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react';
 import ClientRow from './ClientRow';
-import SearchBar from '../../common/SearchBar';
-import Button from '../../common/Button';
+import './ClientList.css'; // Import your CSS file for styling
 
 const ClientList = ({ clients, onClientSelect, onAddNew }) => {
   const [sortField, setSortField] = useState('name');

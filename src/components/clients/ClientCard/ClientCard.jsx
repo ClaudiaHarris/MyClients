@@ -5,7 +5,7 @@ import ContactSection from './ContactSection';
 import SalesRepSection from './SalesRepSection';
 import ContractsSection from './ContractsSection';
 import { mockSalesReps, mockContracts } from '../../../data/mockData';
-
+import './ClientCard.css'; // Import your CSS styles
 const ClientCard = ({ client }) => {
   // Find the sales rep details from our mock data
   const salesRep = mockSalesReps.find(rep => rep.name === client.salesRep) || {};

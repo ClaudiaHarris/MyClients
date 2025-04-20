@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import  Button  from '../common/Button';
 import { mockSalesReps } from '../../data/mockData'; // Mock data for sales representatives
-
+import './Modal.css'; // Import your CSS styles
 const AddClientModal = ({ isOpen, onClose }) => {
 
   const [formData, setFormData] = useState({
