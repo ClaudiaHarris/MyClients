@@ -7,10 +7,10 @@ const ContractsSection = ({ contracts }) => {
       {contracts.length > 0 ? (
         <div>
           {contracts.map(contract => (
-            <div key={contract.id}>
-              <p><strong>Type: </strong>{contract.type}</p>
-              <p><strong>Start Date: </strong>{contract.startDate}</p>
-              <p><strong>End Date: </strong>{contract.endDate}</p>
+            <div key={contract.contract_id}>
+              <p><strong>Type: </strong>{contract.contract_type}</p>
+              <p><strong>Start Date: </strong>{contract.start_date}</p>
+              <p><strong>End Date: </strong>{contract.end_date}</p>
             </div>
           ))}
         </div>

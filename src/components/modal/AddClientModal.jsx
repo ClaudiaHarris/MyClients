@@ -1,49 +1,69 @@
 import React, { useState, useEffect } from 'react';
 import  Button  from '../common/Button';
-import { mockSalesReps } from '../../data/mockData'; // Mock data for sales representatives
-import './Modal.css'; // Import your CSS styles
-const AddClientModal = ({ isOpen, onClose, selectedClient }) => {
+import './Modal.css'; 
+import supabase from '../../config/supabaseClient';
+
+const AddClientModal = ({ isOpen, onClose, selectedClient, onClientAdded }) => {
+
+  
 
   const [formData, setFormData] = useState({
-    name: '',
-    lifecycleStage: 'lead',
-    address: '',
-    contactName: '',
-    contactPhone: '',
-    contactEmail: '',
-    salesRep: '',
-    office: 'NY',
-    website: ''
-  });
+    legal_name: '',
+    lifecycle: 'lead',
+    street_address: '',
+    city: '',
+    state: '',
+    postal_code: '',
+    country: 'US',
+    contact_name: '',
+    contact_title: '',
+    contact_phone: '',
+    contact_ext: '',
+    contact_email: '',
+    
+    office: 'NY'
+   });
 
   //prefill for edit
   useEffect(() => {
     if (selectedClient) {
       setFormData({
-        name: selectedClient.name || '',
-        lifecycleStage: selectedClient.lifecycleStage || 'lead',  
-        address: selectedClient.address || '',
-        contactName: selectedClient.contactName || '',
-        contactPhone: selectedClient.contactPhone || '',
-        contactEmail: selectedClient.contactEmail || '',
-        salesRep: selectedClient.salesRep || '',
-        office: selectedClient.office || 'NY',
-        website: selectedClient.website || ''
+        legal_name: selectedClient.legal_name || '',
+        lifecycle: selectedClient.lifecycle || 'lead',  
+        street_address: selectedClient.address || '',
+        city: selectedClient.city || '',
+        state: selectedClient.state || '',
+        postal_code: selectedClient.postal_code || '',
+        country: selectedClient.country || 'US',
+        contact_name: selectedClient.contact_name || '',
+        contact_title: selectedClient.contact_title || '',
+        contact_phone: selectedClient.contact_phone || '',
+        contact_ext: selectedClient.contact_ext || '',
+        contact_email: selectedClient.contact_email || '',
+        
+        office: selectedClient.office || 'NY'
       });
     } else {
       setFormData({
-        name: '',
-        lifecycleStage: 'lead',
-        address: '',
-        contactName: '',
-        contactPhone: '',
-        contactEmail: '',
-        salesRep: '',
-        office: 'NY',
-        website: ''
+        legal_name: '',
+        lifecycle: 'lead',
+        street_address: '',
+        city: '',
+        state: '',
+        postal_code: '',
+        country: 'US',
+        contact_name: '',
+        contact_title: '',
+        contact_phone: '',
+        contact_ext: '',
+        contact_email: '',
+        
+        office: 'NY'
       });
     }
   }, [selectedClient]);
+
+  if (!isOpen) return null;
 
   // Handle input changes
   const handleChange = (e) => {
@@ -54,14 +74,30 @@ const AddClientModal = ({ isOpen, onClose, selectedClient }) => {
     });
   };
 
-  // Early return after hooks
-  if (!isOpen) return null;
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real app, you would add the client to your data
-    console.log('New client data:', formData);
-    alert('Client would be added here in a real app');
+    let error;
+
+    if (selectedClient) {
+      // Update existing client
+      const { error: updateError } = await supabase
+        .from('clients')
+        .update({ ...formData })
+        .eq('client_id', selectedClient.client_id);
+      error = updateError;
+    } else {
+      // Insert new client
+      const { error: insertError } = await supabase
+        .from('clients')
+        .insert([{ ...formData }]);
+      error = insertError;
+    }
+
+    if (error) {
+      alert(`Error ${selectedClient ? 'updating' : 'adding'} client: ${error.message}`);
+      return;
+    }
+    if (onClientAdded) onClientAdded();
     onClose();
   };
 
@@ -78,11 +114,11 @@ const AddClientModal = ({ isOpen, onClose, selectedClient }) => {
 
             <div className="modal-section">
               <div className="form-group">
-                <label>Business Name*</label>
+                <label>Legal Name*</label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  name="legal_name"
+                  value={formData.legal_name}
                   onChange={handleChange}
                   required
                   className="form-control"
@@ -92,8 +128,8 @@ const AddClientModal = ({ isOpen, onClose, selectedClient }) => {
               <div className="form-group">
                 <label>Lifecycle*</label>
                 <select
-                  name="lifecycleStage"
-                  value={formData.lifecycleStage}
+                  name="lifecycle"
+                  value={formData.lifecycle}
                   onChange={handleChange}
                   required
                   className="form-control"
@@ -107,24 +143,58 @@ const AddClientModal = ({ isOpen, onClose, selectedClient }) => {
               <div className="form-group">
                 <label>Main Address</label>
                 <textarea
-                  name="address"
-                  value={formData.address}
+                  name="street_address"
+                  value={formData.street_address}
                   onChange={handleChange}
                   className="form-control"
-                  rows="2"
+                  rows="1"
                 />
               </div>
-            
+
               <div className="form-group">
-                <label>Website</label>
-                <input
-                  type="text"
-                  name="website"
-                  value={formData.website}
+                <label>City</label>
+                <textarea
+                  name="city"
+                  value={formData.city}
                   onChange={handleChange}
                   className="form-control"
-                  placeholder="www.example.com"
+                  rows="1"
                 />
+              </div>
+
+              <div className="form-group">
+                <label>State</label>
+                <textarea
+                  name="state"
+                  value={formData.state}
+                  onChange={handleChange}
+                  className="form-control"
+                  rows="1"
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Postal Code</label>
+                <textarea
+                  name="postal_code"
+                  value={formData.postal_code}
+                  onChange={handleChange}
+                  className="form-control"
+                  rows="1"
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Country</label>
+                <select
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  className="form-control">               
+                    <option value="US">USA</option>
+                    <option value="US">Brazil</option>
+                    <option value="US">Germany</option>                
+                </select>
               </div>
 
             </div>
@@ -139,10 +209,21 @@ const AddClientModal = ({ isOpen, onClose, selectedClient }) => {
                   <label>Contact Name*</label>
                   <input
                     type="text"
-                    name="contactName"
-                    value={formData.contactName}
+                    name="contact_name"
+                    value={formData.contact_name}
                     onChange={handleChange}
                     required
+                    className="form-control"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Contact Title</label>
+                  <input
+                    type="text"
+                    name="contact_title"
+                    value={formData.contact_title}
+                    onChange={handleChange}
                     className="form-control"
                   />
                 </div>
@@ -151,60 +232,38 @@ const AddClientModal = ({ isOpen, onClose, selectedClient }) => {
                   <label>Contact Phone</label>
                   <input
                     type="tel"
-                    name="contactPhone"
-                    value={formData.contactPhone}
+                    name="contact_phone"
+                    value={formData.contact_phone}
+                    onChange={handleChange}
+                    className="form-control"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Contact Ext.</label>
+                  <input
+                    type="integer"
+                    name="contact_ext"              
+                    value={formData.contact_ext}
                     onChange={handleChange}
                     className="form-control"
                   />
                 </div>
                 
                 <div className="form-group">
-                  <label>Contact Email*</label>
+                  <label>Contact Email</label>
                   <input
                     type="email"
-                    name="contactEmail"
-                    value={formData.contactEmail}
+                    name="contact_email"
+                    value={formData.contact_email}
                     onChange={handleChange}
-                    required
                     className="form-control"
                   />
                 </div>
               </div>
             </div>
             
-            <div className="modal-section">
-              <h3>Assignment</h3>
-              
-              <div className="form-group">
-                <label>Sales Representative</label>
-                <select
-                  name="salesRep"
-                  value={formData.salesRep}
-                  onChange={handleChange}
-                  className="form-control"
-                >
-                  <option value="">Select a Sales Rep</option>
-                  {mockSalesReps.map(rep => (
-                    <option key={rep.id} value={rep.name}>{rep.name}</option>
-                  ))}
-                </select>
-              </div>
-              
-              <div className="form-group">
-                <label>GlobalTech Office*</label>
-                <select
-                  name="office"
-                  value={formData.office}
-                  onChange={handleChange}
-                  required
-                  className="form-control"
-                >
-                  <option value="NY">New York</option>
-                  <option value="Frankfurt">Frankfurt</option>
-                  <option value="Rio de Janeiro">Rio de Janeiro</option>
-                </select>
-              </div>
-            </div>
+           
           
           
             <div className="modal-footer">

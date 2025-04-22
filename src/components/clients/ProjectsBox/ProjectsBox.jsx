@@ -8,12 +8,12 @@ const ProjectsBox = ({ clientId }) => {
   const [activeTab, setActiveTab] = useState('all');
   
   // Filter projects for this client
-  const clientProjects = mockProjects.filter(project => project.clientId === clientId);
+  const clientProjects = mockProjects.filter(project => project.client_id === clientId);
   
   // Filter projects based on the active tab
   const filteredProjects = activeTab === 'all' 
     ? clientProjects 
-    : clientProjects.filter(project => project.status === activeTab);
+    : clientProjects.filter(project => project.project_status === activeTab);
 
   return (
     <div className="projects-box">
@@ -30,9 +30,9 @@ const ProjectsBox = ({ clientId }) => {
           onTabChange={setActiveTab} 
           projectCounts={{
             all: clientProjects.length,
-            pending: clientProjects.filter(p => p.status === 'pending').length,
-            active: clientProjects.filter(p => p.status === 'active').length,
-            closed: clientProjects.filter(p => p.status === 'closed').length
+            pending: clientProjects.filter(p => p.project_status === 'pending').length,
+            active: clientProjects.filter(p => p.project_status === 'active').length,
+            closed: clientProjects.filter(p => p.project_status === 'closed').length
           }}
         />
         

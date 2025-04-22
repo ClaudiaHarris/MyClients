@@ -66,6 +66,7 @@
   position: sticky;
   top: 0;
   z-index: 2;
+  padding: var(--spacing-sm) var(--spacing-md);
 }
 
 .client-table-header {
@@ -103,34 +104,41 @@
 .client-table thead tr {
   display: table-row;
   width: 100%;
-  font-size: 0.8rem;
+  font-size: .9rem;
 }
 
 /* Adjust column widths */
 .client-table th:nth-child(1),
-.client-table td:nth-child(1) { width: 20%; }
+.client-table td:nth-child(1) {width: 2%; }
 .client-table th:nth-child(2),
 .client-table td:nth-child(2) { width: 15%; }
 .client-table th:nth-child(3),
 .client-table td:nth-child(3) { width: 12%; }
 .client-table th:nth-child(4),
-.client-table td:nth-child(4) { width: 15%; }
+.client-table td:nth-child(4) { width: 10%; }
 .client-table th:nth-child(5),
-.client-table td:nth-child(5) { width: 10%; }
+.client-table td:nth-child(5) { width: 12%; }
 .client-table th:nth-child(6),
-.client-table td:nth-child(6) { width: 18%; }
+.client-table td:nth-child(6) { width: 10%; }
 .client-table th:nth-child(7),
-.client-table td:nth-child(7) {
+.client-table td:nth-child(7) { width: 25%; }
+.client-table th:nth-child(8),
+.client-table td:nth-child(8) {
   width: 130px;
-  padding-right: var(--spacing-md);
+  padding: var(--spacing-sm);
   white-space: nowrap;
   overflow: visible;
 }
 
-.client-table th:last-child {
-  padding-right: var(--spacing-md);
+.client-table td:first-child {
+  padding-left: var(--spacing-md);
   text-align: left;
 }
+.client-table th:last-child {
+  padding-right: var(--spacing-sm);
+  text-align: left;
+}
+
 
 .client-table tbody td {
   vertical-align: middle;
@@ -141,10 +149,12 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
   font-size: 0.8rem;
+  
 }
 
 .client-row:hover {
   background-color: var(--light-grey);
+  font-size: 1rem;
 }
 
 .lifecycle-stage {
@@ -180,8 +190,10 @@
   max-width: 0;
 }
 
-.client-table td.actions {
-  padding: var(--spacing-sm) var(--spacing-md);
-  text-align: left;
+.client-row-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
   vertical-align: middle;
 }

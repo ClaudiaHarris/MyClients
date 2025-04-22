@@ -1,15 +1,18 @@
 // src/components/clients/ClientCard/ClientDetails.jsx
 import React from 'react';
 
-const ClientDetails = ({ name, address, website }) => {
+const ClientDetails = ({ legal_name, street_address, city, state, postal_code, country }) => {
   return (
     <div className="client-details-section">
     
       <div className="section-content">
-        <h2> {name}</h2>
-        <p> {address}</p>
+        <h2> {legal_name}</h2>
+        <p> {street_address}</p>
+        <p> {city}, {state} {postal_code}</p>
+        <p> {country}</p>
+        
         <div><span> 
-          <a href={`https://${website}`} target="_blank" rel="noopener noreferrer">{website}</a>
+          
           <div className="client-card-actions">
             <button className="edit-btn">Edit</button>
             <button className="delete-btn">Delete</button>

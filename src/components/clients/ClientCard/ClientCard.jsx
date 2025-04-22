@@ -4,37 +4,39 @@ import ClientDetails from './ClientDetails';
 import ContactSection from './ContactSection';
 import SalesRepSection from './SalesRepSection';
 import ContractsSection from './ContractsSection';
-import { mockSalesReps, mockContracts } from '../../../data/mockData';
 import './ClientCard.css'; // Import your CSS styles
-const ClientCard = ({ client }) => {
-  // Find the sales rep details from our mock data
-  const salesRep = mockSalesReps.find(rep => rep.name === client.salesRep) || {};
-  const clientContracts = mockContracts.filter(contract => client.contracts.includes(contract.id));
+
+const ClientCard = ({ client, sales_rep, contracts }) => {
+  if (!client) return null;
+
   return (
     <div className="client-card">
-           
       <div className="client-card-content">
-        
         <ClientDetails 
-          name={client.name}
-          address={client.address} 
-          website={client.website} 
+          legal_name={client.legal_name}
+          street_address={client.street_address} 
+          city={client.city} 
+          state={client.state}
+          postal_code={client.postal_code}
+          country={client.country}
         />
         
         <ContactSection 
-          name={client.contactName} 
-          email={client.email} 
-          phone={client.phone} 
+          contact_name={client.contact_name} 
+          contact_title={client.contact_title}
+          contact_email={client.contact_email} 
+          contact_phone={client.contact_phone}
+          contact_ext={client.contact_ext} 
         />
         
         <SalesRepSection 
-          name={salesRep.name} 
-          office={salesRep.office} 
-          email={salesRep.email} 
-          phone={salesRep.phone} 
+          name={client.sales_rep || ''}
+          rep_phone={client.rep_phone || ''}
+          rep_extension={client.rep_extension || ''}
+          region={client.region || ''}
         />
         
-        <ContractsSection contracts={clientContracts} />
+        <ContractsSection contracts={contracts || []} />
       </div>
     </div>
   );

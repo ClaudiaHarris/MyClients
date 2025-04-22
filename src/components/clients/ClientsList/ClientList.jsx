@@ -2,23 +2,27 @@ import React, { useState } from 'react';
 import ClientRow from './ClientRow';
 import './ClientList.css'; // Import your CSS file for styling
 
-const ClientList = ({ clients, onClientSelect, onAddNew, onEdit }) => {
-  const [sortField, setSortField] = useState('name');
+const ClientList = ({ clients, onClientSelect, onAddNew, onEdit, onDelete }) => {
+  const [sortField, setSortField] = useState('legal_name');
   const [sortDirection, setSortDirection] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
 
   // Filter clients based on search term
-  const filteredClients = clients.filter(client => 
-    client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    client.contactName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const searchTermLower = searchTerm.toLowerCase();
+  const filteredClients = (clients || []).filter(client => {
+    if (!client) return false;
+    return String(client.legal_name || '').toLowerCase().includes(searchTermLower) ||
+           String(client.contact_name || '').toLowerCase().includes(searchTermLower);
+  });
 
   // Sort clients based on sort field and direction
   const sortedClients = [...filteredClients].sort((a, b) => {
+    const aValue = (a[sortField] || '').toLowerCase();
+    const bValue = (b[sortField] || '').toLowerCase();
     if (sortDirection === 'asc') {
-      return a[sortField] > b[sortField] ? 1 : -1;
+      return aValue > bValue ? 1 : -1;
     } else {
-      return a[sortField] < b[sortField] ? 1 : -1;
+      return aValue < bValue ? 1 : -1;
     }
   });
 
@@ -37,7 +41,15 @@ const ClientList = ({ clients, onClientSelect, onAddNew, onEdit }) => {
       onEdit(client);
     } else {
       // Default: log or alert
-      alert(`Edit client: ${client.name}`);
+      alert(`Edit client: ${client.legal_name}`);
+    }
+  };
+
+  const handleDelete = (client) => {
+    if (onDelete) {
+      onDelete(client);
+    } else {
+      alert(`Delete client: ${client.legal_name}`);
     }
   };
 
@@ -47,28 +59,31 @@ const ClientList = ({ clients, onClientSelect, onAddNew, onEdit }) => {
         <table className="client-table">
           <thead className="client-table-header">
             <tr>
-              <th onClick={() => handleSort('name')}>
+              <th>
+                clientID            
+              </th>
+              <th onClick={() => handleSort('legal_name')}>
                 Client Name
-                {sortField === 'name' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
+                {sortField === 'legal_name' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
-              <th onClick={() => handleSort('contactName')}>
+              <th onClick={() => handleSort('contact_name')}>
                 Contact
-                {sortField === 'contactName' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
+                {sortField === 'contact_name' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
-              <th onClick={() => handleSort('lifecycleStage')}>
+              <th onClick={() => handleSort('lifecycle')}>
                 Lifecycle
-                {sortField === 'lifecycleStage' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
+                {sortField === 'lifecycle' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
-              <th onClick={() => handleSort('salesRep')}>
+              <th onClick={() => handleSort('sales_rep')}>
                 Sales Rep
-                {sortField === 'salesRep' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
+                {sortField === 'sales_rep' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th onClick={() => handleSort('office')}>
                 Office
                 {sortField === 'office' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
               <th>Email</th>
-              <th>Actions</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -78,6 +93,7 @@ const ClientList = ({ clients, onClientSelect, onAddNew, onEdit }) => {
                 client={client} 
                 onSelect={onClientSelect} 
                 onEdit={handleEdit}
+                onDelete={handleDelete}
               />
             ))}
             {sortedClients.length === 0 && (
