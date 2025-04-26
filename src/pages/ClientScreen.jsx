@@ -80,6 +80,10 @@ const ClientScreen = () => {
     setSelectedContract(contract);
   };
 
+  const handleClearContractFilter = () => {
+    setSelectedContract(null);
+  }
+
   return (
     <MainLayout pageTitle="My Clients"> 
     
@@ -105,7 +109,10 @@ const ClientScreen = () => {
         <div className="client-details-container">
           {selectedClient ? (
             <>
-              <ClientCard client={selectedClient} />
+              <ClientCard 
+              client={selectedClient}
+              onContractSelect={handleContractSelect}
+              selectedContract={selectedContract} />
             </>
           ) : (
             <div className="no-selection-placeholder">
@@ -122,6 +129,7 @@ const ClientScreen = () => {
               <ProjectsBox 
                 clientId={selectedClient.client_id}
                 contractId={selectedContract?.contract_id}
+                onClearContractFilter={handleClearContractFilter}
               />
             </>
           ) : (

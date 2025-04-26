@@ -7,7 +7,7 @@ import SalesRepSection from './SalesRepSection';
 import ContractsSection from './ContractsSection';
 import './ClientCard.css';
 
-const ClientCard = ({ client, onContractSelect }) => {
+const ClientCard = ({ client, onContractSelect, selectedContract }) => {
   const [salesRep, setSalesRep] = useState(null);
   const [contracts, setContracts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -83,8 +83,10 @@ const ClientCard = ({ client, onContractSelect }) => {
         />
         
         <ContractsSection 
-          contracts={client.contracts || []} 
+          contracts={contracts || []} 
           onContractSelect={onContractSelect}
+          selectedContract={selectedContract}
+          
         />
 
         {error && <div className="error-message">{error}</div>}

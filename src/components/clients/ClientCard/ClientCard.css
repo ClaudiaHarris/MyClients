@@ -18,7 +18,6 @@
   gap: var(--spacing-xs);
   justify-content: flex-end;
   margin-left: auto;
-  /* Removed transform: translatey(-100%); as it is likely unintended */
 }
 
 .client-card-content, .projects-card-content {
@@ -78,6 +77,37 @@
   padding: var(--spacing-md);
   color: var(--medium-grey);
   font-style: italic;
+}
+
+.contract-details {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.contract-details:hover:not(.selected) {
+  background-color: rgba(238, 238, 238, 0.5);
+}
+
+.contract-details.selected {
+  background-color: var(--light-grey);
+}
+
+.contracts-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.contracts-list th {
+  background-color: var(--pastured-egg);
+  text-align: left;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.7rem;
+}
+
+.contracts-list td {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-bottom: 1px solid var(--light-grey);
+  font-size: 0.8rem;
 }
 
 .no-selection-placeholder {

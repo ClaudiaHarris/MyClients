@@ -1,8 +1,9 @@
 import React from 'react';
 
-const ContractDetails = ({ contract, onSelect }) => {
+const ContractDetails = ({ contract, onSelect, isSelected }) => {
 
   const handleClick = () => {
+    console.log('contract clicked: ', contract);
     if (onSelect && typeof onSelect === 'function') {
       onSelect(contract);
     }
@@ -12,7 +13,10 @@ const ContractDetails = ({ contract, onSelect }) => {
     <tr 
       onClick={handleClick}
       className="contract-details"
-      style={{ cursor: onSelect ? 'pointer' : 'default'}}
+      style={{ 
+        cursor: onSelect ? 'pointer' : 'default',
+        backgroundColor: isSelected ? 'var(--light-grey)':''
+      }}
     >
       <td>{contract.contract_type}</td>
       <td>${contract.value}</td>

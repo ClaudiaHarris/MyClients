@@ -1,7 +1,7 @@
 import React from 'react';
 import ContractsList from './contracts/ContractsList';
 
-const ContractsSection = ({ contracts = [], onContractSelect }) => {
+const ContractsSection = ({ contracts = [], onContractSelect, selectedContract }) => {
   return (
     <div className="contracts-section">
       
@@ -11,6 +11,7 @@ const ContractsSection = ({ contracts = [], onContractSelect }) => {
           <ContractsList
             contracts = {contracts}
             onContractSelect={onContractSelect}
+            selectedContract={selectedContract}
           />
         </div>
       ) : (
