@@ -1,7 +1,7 @@
 // src/components/clients/ProjectsBox/ProjectTabs.jsx
 import React from 'react';
 
-const ProjectTabs = ({ activeTab, onTabChange, projectCounts }) => {
+const ProjectTabs = ({ activeTab, onTabChange, projectCounts = {all:0, pending:0, active:0, closed:0} }) => {
   return (
     <div className="project-tabs">
       <button 

@@ -8,17 +8,16 @@ import ProjectsBox from '../components/clients/ProjectsBox/ProjectsBox';
 import AddClientModal from '../components/modal/AddClientModal'; 
 import ClientListActions from '../components/clients/ClientsList/ClientListActions'; 
 
-// Main ClientScreen component
 const ClientScreen = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false); // New state for edit modal
   const [selectedClient, setSelectedClient] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-
+  const [selectedContract, setSelectedContract] = useState(null);
+  
   const [fetchError, setFetchError] = useState(null);
   const [clients, setClients] = useState([]);
 
-  // Moved fetchClients outside useEffect so it can be reused
   const fetchClients = async () => {
     const { data, error } = await supabase
       .from('clients')
@@ -77,6 +76,10 @@ const ClientScreen = () => {
     (client.contact_name || '').toLowerCase().includes(searchValue.toLowerCase())
   );
 
+  const handleContractSelect = (contract) => {
+    setSelectedContract(contract);
+  };
+
   return (
     <MainLayout pageTitle="My Clients"> 
     
@@ -116,7 +119,10 @@ const ClientScreen = () => {
         <div className="projects-container">
           {selectedClient ? (
             <>
-              <ProjectsBox clientId={selectedClient.client_id} />
+              <ProjectsBox 
+                clientId={selectedClient.client_id}
+                contractId={selectedContract?.contract_id}
+              />
             </>
           ) : (
             <div className="no-selection-placeholder">

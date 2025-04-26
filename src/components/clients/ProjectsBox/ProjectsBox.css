@@ -142,3 +142,18 @@
   color: var(--medium-grey);
   font-style: italic;
 }
+
+.loading-message, .error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: var(--spacing-lg);
+  color: var(--medium-grey);
+  font-style: italic;
+  text-align: center;
+}
+
+.error-message {
+  color: var(--rustic-red);
+}

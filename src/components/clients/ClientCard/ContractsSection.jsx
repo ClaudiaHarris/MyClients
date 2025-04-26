@@ -1,23 +1,25 @@
 import React from 'react';
+import ContractsList from './contracts/ContractsList';
 
-const ContractsSection = ({ contracts }) => {
+const ContractsSection = ({ contracts = [], onContractSelect }) => {
   return (
     <div className="contracts-section">
-     
-      {contracts.length > 0 ? (
+      
+      <h3>Contracts</h3>
+      {contracts && contracts.length > 0 ? (
         <div>
-          {contracts.map(contract => (
-            <div key={contract.contract_id}>
-              <p><strong>Type: </strong>{contract.contract_type}</p>
-              <p><strong>Start Date: </strong>{contract.start_date}</p>
-              <p><strong>End Date: </strong>{contract.end_date}</p>
-            </div>
-          ))}
+          <ContractsList
+            contracts = {contracts}
+            onContractSelect={onContractSelect}
+          />
         </div>
       ) : (
         <p className="no-contracts-message">No contracts available</p>
       )}
+     
     </div>
+    
   );
 };
+
 export default ContractsSection;

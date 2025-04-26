@@ -17,17 +17,15 @@ const ProjectList = ({ projects }) => {
           </thead>
           <tbody>
             {projects.map(project => (
-              <tr key={project.id}>
-                <td>{project.name}</td>
+              <tr key={project.project_id}>
+                <td>{project.project_name}</td>
                 <td>
-                  <span className={`status-badge ${project.status}`}>
-                    {project.status}
+                  <span className={`status-badge ${project.project_status}`}>
+                    {project.project_status}
                   </span>
                 </td>
-                <td>{project.startDate}</td>
-                <td>{project.endDate}</td>
-               
-                
+                <td>{project.start_date}</td>
+                <td>{project.end_date}</td>
               </tr>
             ))}
           </tbody>

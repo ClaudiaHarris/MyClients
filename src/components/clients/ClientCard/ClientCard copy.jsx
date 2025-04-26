@@ -2,12 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import supabase from '../../../config/supabaseClient';
 import ClientDetails from './ClientDetails';
+import ContractsList from './contracts/ContractsList';
 import ContactSection from './ContactSection';
 import SalesRepSection from './SalesRepSection';
 import ContractsSection from './ContractsSection';
 import './ClientCard.css';
 
-const ClientCard = ({ client, onContractSelect }) => {
+const ClientCard = ({ client }) => {
   const [salesRep, setSalesRep] = useState(null);
   const [contracts, setContracts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -82,10 +83,7 @@ const ClientCard = ({ client, onContractSelect }) => {
           region={salesRep?.region || ''}
         />
         
-        <ContractsSection 
-          contracts={client.contracts || []} 
-          onContractSelect={onContractSelect}
-        />
+        <ContractsSection contracts={contracts} />
 
         {error && <div className="error-message">{error}</div>}
       </div>

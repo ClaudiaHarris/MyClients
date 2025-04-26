@@ -89,7 +89,7 @@ const ClientList = ({ clients, onClientSelect, onAddNew, onEdit, onDelete }) => 
           <tbody>
             {sortedClients.map(client => (
               <ClientRow 
-                key={client.id} 
+                key={client.client_id} 
                 client={client} 
                 onSelect={onClientSelect} 
                 onEdit={handleEdit}
