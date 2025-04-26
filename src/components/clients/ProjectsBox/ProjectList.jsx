@@ -18,7 +18,7 @@ const ProjectList = ({ projects }) => {
           <tbody>
             {projects.map(project => (
               <tr key={project.project_id}>
-                <td>{project.project_name}</td>
+                <td>{project.project_type}</td>
                 <td>
                   <span className={`status-badge ${project.project_status}`}>
                     {project.project_status}

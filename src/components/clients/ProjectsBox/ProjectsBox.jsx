@@ -5,7 +5,7 @@ import ProjectTabs from './ProjectTabs';
 import ProjectList from './ProjectList';
 import './ProjectsBox.css';
 
-const ProjectsBox = ({ clientId, contractId, onClearContractFilter }) => {
+const ProjectsBox = ({ contractId, onClearContractFilter }) => {
   
   const [activeTab, setActiveTab] = useState('all');
   const [projects, setProjects] = useState([]);
@@ -26,7 +26,7 @@ const ProjectsBox = ({ clientId, contractId, onClearContractFilter }) => {
         let query = supabase
           .from('projects')
           .select('*')
-          .eq('client_id', clientId);
+          .eq('contract_id', contractId);
 
         if (contractId) {
           query = query.eq('contract_id', contractId);
@@ -40,6 +40,7 @@ const ProjectsBox = ({ clientId, contractId, onClearContractFilter }) => {
 
         if (error) {
           console.error('Error fetching projects: ', error);
+          setError(error.message);
         } else {
           setProjects(data || []);
 
@@ -55,14 +56,14 @@ const ProjectsBox = ({ clientId, contractId, onClearContractFilter }) => {
         setLoading(false);
         };
 
-        if (clientId) {
+        if (contractId) {
           fetchProjects();
         } else {
           setProjects([]);
           setProjectCounts({ all: 0, pending: 0, active: 0, closed: 0 });
           setLoading(false);
         }
-      }, [clientId, contractId, activeTab]);
+      }, [contractId, activeTab]);
 
      const handleTabChange = (tab) => {
       setActiveTab(tab);
@@ -74,6 +75,7 @@ const ProjectsBox = ({ clientId, contractId, onClearContractFilter }) => {
 
 
   return (
+
     <div className="projects-card-content">
       <div className="projects-header">
         <h2>Projects</h2>
@@ -88,14 +90,17 @@ const ProjectsBox = ({ clientId, contractId, onClearContractFilter }) => {
               )}
       </div>
 
-      <ProjectTabs activeTab={activeTab} onTabChange={handleTabChange} />
+      <ProjectTabs activeTab={activeTab} onTabChange={handleTabChange} projectCounts={projectCounts}/>
 
       {loading ? (
         <div className="loading-indicator">Loading projects...</div>
+      ): error? (
+        <div className="error-message">{error}</div>
       ): (
         <ProjectList projects={filteredProjects} />
       )}
     </div> 
+
   );
 };    
 
