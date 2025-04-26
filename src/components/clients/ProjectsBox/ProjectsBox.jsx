@@ -5,7 +5,7 @@ import ProjectTabs from './ProjectTabs';
 import ProjectList from './ProjectList';
 import './ProjectsBox.css';
 
-const ProjectsBox = ({ contractId, onClearContractFilter }) => {
+const ProjectsBox = ({ contractId}) => {
   
   const [activeTab, setActiveTab] = useState('all');
   const [projects, setProjects] = useState([]);
@@ -82,10 +82,7 @@ const ProjectsBox = ({ contractId, onClearContractFilter }) => {
         {contractId && (
           <div className="filter-indicator">
             <span className="by-contract">for this contract</span>
-            <button
-              className="clear-filter-btn"
-              onClick={() => onClearContractFilter && onClearContractFilter()}
-            > x </button>
+            
           </div>
               )}
       </div>
