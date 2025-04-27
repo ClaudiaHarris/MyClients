@@ -57,7 +57,8 @@ const ClientList = ({ clients, onClientSelect, onAddNew, onEdit, onDelete }) => 
     <div className="client-list">
       <div className="client-table-container">
         <table className="client-table">
-          <thead className="client-table-header">
+
+          <thead >
             <tr>
               <th>
                 clientID            
@@ -74,18 +75,10 @@ const ClientList = ({ clients, onClientSelect, onAddNew, onEdit, onDelete }) => 
                 Lifecycle
                 {sortField === 'lifecycle' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
-              <th onClick={() => handleSort('sales_rep')}>
-                Sales Rep
-                {sortField === 'sales_rep' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
-              </th>
-              <th onClick={() => handleSort('office')}>
-                Office
-                {sortField === 'office' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
-              </th>
-              <th>Email</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </thead>
+
           <tbody>
             {sortedClients.map(client => (
               <ClientRow 

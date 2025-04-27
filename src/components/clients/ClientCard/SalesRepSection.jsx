@@ -16,5 +16,5 @@ const SalesRepSection = ({ name, rep_phone, rep_extension, region }) => {
     </div>
   );
 };
-
+//TODO add sales rep to supabase
 export default SalesRepSection;

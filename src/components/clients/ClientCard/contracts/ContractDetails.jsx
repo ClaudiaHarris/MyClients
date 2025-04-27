@@ -26,5 +26,5 @@ const ContractDetails = ({ contract, onSelect, isSelected }) => {
     </tr>
   );
 };
-
+//TODO sync contract status to supabase
 export default ContractDetails;

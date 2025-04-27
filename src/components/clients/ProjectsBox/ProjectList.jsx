@@ -10,22 +10,22 @@ const ProjectList = ({ projects }) => {
             <tr>
               <th>Project Name</th>
               <th>Status</th>
-              <th>Start Date</th>
-              <th>End Date</th>
+              <th>Due Date</th>
+              
               <th></th>
             </tr>
           </thead>
           <tbody>
             {projects.map(project => (
               <tr key={project.project_id}>
-                <td>{project.project_type}</td>
+                <td>{project.project_name}</td>
                 <td>
                   <span className={`status-badge ${project.project_status}`}>
                     {project.project_status}
                   </span>
                 </td>
-                <td>{project.start_date}</td>
-                <td>{project.end_date}</td>
+                <td>{project.est_completion_date}</td>
+                
               </tr>
             ))}
           </tbody>

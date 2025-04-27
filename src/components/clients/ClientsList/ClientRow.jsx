@@ -13,11 +13,7 @@ const ClientRow = ({ client, onSelect, onEdit, onDelete }) => {
           {client.lifecycle}
         </span>
       </td>
-      <td>{client.sales_rep}</td>
-      <td>{client.office}</td>
-      <td>{client.contact_email}</td>
-
-      <td className="client-row-actions">
+      <td>
         <ClientRowActions 
           onEdit={e => {
             e.stopPropagation(); // Prevent row selection

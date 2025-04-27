@@ -13,7 +13,6 @@ const ProjectsBox = ({ contractId}) => {
   const [error, setError] = useState(null);
   const [projectCounts, setProjectCounts] = useState({
     all:0,
-    pending:0,
     active:0,
     closed:0
   });
@@ -46,9 +45,8 @@ const ProjectsBox = ({ contractId}) => {
 
           const counts = {
             all: data.length,
-            pending: data.filter(p => p.project_status === 'pending').length,
-            active: data.filter(p => p.project_status === 'active').length,
-            closed: data.filter(p => p.project_status === 'closed').length
+            active: data.filter(p => p.project_status === 'active').length,//TODO change ongoing to active in supabase
+            closed: data.filter(p => p.project_status === 'completed').length
           };
           setProjectCounts(counts);
         };
@@ -60,7 +58,7 @@ const ProjectsBox = ({ contractId}) => {
           fetchProjects();
         } else {
           setProjects([]);
-          setProjectCounts({ all: 0, pending: 0, active: 0, closed: 0 });
+          setProjectCounts({ all: 0,  active: 0, closed: 0 });
           setLoading(false);
         }
       }, [contractId, activeTab]);
@@ -72,7 +70,7 @@ const ProjectsBox = ({ contractId}) => {
      const filteredProjects = activeTab === 'all' 
      ? projects 
      : projects.filter(project => project.project_status === activeTab);
-
+//fetch contract name from contracts table for section header
 
   return (
 
@@ -81,7 +79,7 @@ const ProjectsBox = ({ contractId}) => {
         <h2>Projects</h2>
         {contractId && (
           <div className="filter-indicator">
-            <span className="by-contract">for this contract</span>
+            <span className="by-contract">for this contract{contractId}</span>
             
           </div>
               )}
