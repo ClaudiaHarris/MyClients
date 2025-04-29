@@ -62,7 +62,7 @@
 }
 
 .projects-container {
-  background: white;
+
   display: flex;
   flex-direction: column;
   gap: 20px;

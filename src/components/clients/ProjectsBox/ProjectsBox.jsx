@@ -11,12 +11,38 @@ const ProjectsBox = ({ contractId}) => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [contractName, setContractName] = useState('');
   const [projectCounts, setProjectCounts] = useState({
     all:0,
     active:0,
     closed:0
   });
 
+
+  useEffect(() => {
+
+    const fetchContractName = async () => {
+      if (!contractId) {
+        setContractName('');
+        return; 
+      }
+
+      const { data, error } = await supabase
+        .from('contracts')
+        .select('contract_type')
+        .eq('contract_id', contractId)
+        .single();
+
+      if (error) {
+        console.error('Error fetching contract name: ', error);
+      } else {
+        setContractName(data.contract_type);
+      }
+    };
+    
+
+    fetchContractName();
+  }, [contractId]);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -79,10 +105,9 @@ const ProjectsBox = ({ contractId}) => {
         <h2>Projects</h2>
         {contractId && (
           <div className="filter-indicator">
-            <span className="by-contract">for this contract{contractId}</span>
-            
+            <span className="by-contract">for {contractName || 'this contract'}</span>
           </div>
-              )}
+        )}
       </div>
 
       <ProjectTabs activeTab={activeTab} onTabChange={handleTabChange} projectCounts={projectCounts}/>
