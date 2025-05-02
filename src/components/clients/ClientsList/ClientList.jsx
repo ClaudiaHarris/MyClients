@@ -60,9 +60,7 @@ const ClientList = ({ clients, onClientSelect, onAddNew, onEdit, onDelete }) => 
 
           <thead >
             <tr>
-              <th>
-                clientID            
-              </th>
+             
               <th onClick={() => handleSort('legal_name')}>
                 Client Name
                 {sortField === 'legal_name' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
@@ -82,7 +80,7 @@ const ClientList = ({ clients, onClientSelect, onAddNew, onEdit, onDelete }) => 
           <tbody>
             {sortedClients.map(client => (
               <ClientRow 
-                key={client.client_id} 
+                key={client.client_id}
                 client={client} 
                 onSelect={onClientSelect} 
                 onEdit={handleEdit}

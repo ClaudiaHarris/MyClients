@@ -15,7 +15,7 @@ const ContractsList = ({ contracts = [], onContractSelect, selectedContract }) =
           <th>Value</th>
           <th>Start Date</th>
           <th>End Date</th>
-          <th>Status</th>
+          
         </tr>
       </thead>
       <tbody>

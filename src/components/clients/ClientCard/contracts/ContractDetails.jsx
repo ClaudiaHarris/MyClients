@@ -22,7 +22,7 @@ const ContractDetails = ({ contract, onSelect, isSelected }) => {
       <td>${contract.value}</td>
       <td>{contract.start_date}</td>
       <td>{contract.end_date}</td>
-      <td>{contract.status || 'Pending'}</td>
+      
     </tr>
   );
 };

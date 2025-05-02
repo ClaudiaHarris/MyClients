@@ -11,14 +11,6 @@ const ClientDetails = ({ legal_name, street_address, city, state, postal_code, c
         <p> {city}, {state} {postal_code}</p>
         <p> {country}</p>
         
-        <div><span> 
-          
-          <div className="client-card-actions">
-            <button className="edit-btn">Edit</button>
-            <button className="delete-btn">Delete</button>
-            <button className="archive-btn">Archive</button>
-          </div>
-        </span></div>
       </div>
     </div>
   );

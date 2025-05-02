@@ -5,6 +5,10 @@
   flex-direction: column;
 }
 
+.client-card a {
+  font-size: 0.8rem;
+}
+
 .client-card-header {
   display: flex;
   justify-content: space-between;
@@ -13,11 +17,11 @@
   gap: var(--spacing-md);
 }
 
-.client-card-actions {
+
+.client-card-content p {
   display: flex;
-  gap: var(--spacing-xs);
-  justify-content: flex-end;
-  margin-left: auto;
+  font-size: 0.8rem;
+
 }
 
 .client-card-content, .projects-card-content {
@@ -29,9 +33,7 @@
   overflow-y: auto;
 }
 
-.client-card-content p {
-  font-size: 0.8rem;
-}
+
 
 .client-details-container {
   display: flex;
@@ -42,8 +44,9 @@
   overflow: hidden;
 }
 
-.client-details-section, .contact-section, .sales-rep-section, .contracts-section {
+.client-details-section, .contact-section, .sales-rep-section {
   margin-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
   border-bottom: 1px solid var(--light-grey);
   overflow: hidden;
 }
@@ -53,7 +56,7 @@
 }
 
 .section-content p {
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin-bottom: var (--spacing-xs);
 }
 
@@ -93,21 +96,31 @@
 }
 
 .contracts-list {
+  
   width: 100%;
   border-collapse: collapse;
 }
-
-.contracts-list th {
+.contracts-list thead {
   background-color: var(--pastured-egg);
+}
+.contracts-list th {
+  
   text-align: left;
   padding: var(--spacing-xs) var(--spacing-sm);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+}
+.contracts-list th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.contracts-list th:last-child {
+  border-top-right-radius: 8px;
 }
 
 .contracts-list td {
   padding: var(--spacing-xs) var(--spacing-sm);
   border-bottom: 1px solid var(--light-grey);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .no-selection-placeholder {

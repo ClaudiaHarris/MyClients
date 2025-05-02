@@ -70,7 +70,6 @@ const ClientScreen = () => {
     }
   };
   
-  // Use Supabase clients for filtering/search
   const filteredClients = (clients || []).filter(client =>
     (client.legal_name || client.name || '').toLowerCase().includes(searchValue.toLowerCase()) ||
     (client.contact_name || '').toLowerCase().includes(searchValue.toLowerCase())
@@ -128,6 +127,7 @@ const ClientScreen = () => {
             <>
               <ProjectsBox 
                 clientId={selectedClient.client_id}
+                clientName={selectedClient.legal_name}
                 contractId={selectedContract?.contract_id}
                 onClearContractFilter={handleClearContractFilter}
               />

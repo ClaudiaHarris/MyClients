@@ -5,7 +5,7 @@ const ClientRow = ({ client, onSelect, onEdit, onDelete }) => {
 
   return (
     <tr onClick={() => onSelect(client)} className="client-row">
-      <td>{client.client_id}</td>
+      
       <td>{client.legal_name}</td>
       <td>{client.contact_name}</td>
       <td>

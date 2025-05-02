@@ -74,13 +74,7 @@ const ClientCard = ({ client, onContractSelect, selectedContract }) => {
           contact_phone={client.contact_phone}
           contact_ext={client.contact_ext} 
         />
-        
-        <SalesRepSection 
-          name={salesRep?.name || client.sales_rep || 'None assigned'}
-          rep_phone={salesRep?.phone || ''}
-          rep_extension={salesRep?.ext || ''}
-          region={salesRep?.region || ''}
-        />
+      
         
         <ContractsSection 
           contracts={contracts || []} 

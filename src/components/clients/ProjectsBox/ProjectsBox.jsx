@@ -1,23 +1,18 @@
 // src/components/clients/ProjectsBox/ProjectsBox.jsx
 import React, { useState, useEffect } from 'react';
 import supabase from '../../../config/supabaseClient';
-import ProjectTabs from './ProjectTabs';
 import ProjectList from './ProjectList';
 import './ProjectsBox.css';
 
-const ProjectsBox = ({ contractId}) => {
+const ProjectsBox = ({ contractId, clientName}) => {
   
-  const [activeTab, setActiveTab] = useState('all');
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [contractName, setContractName] = useState('');
-  const [projectCounts, setProjectCounts] = useState({
-    all:0,
-    active:0,
-    closed:0
-  });
-
+  
+  
+ 
 
   useEffect(() => {
 
@@ -57,9 +52,7 @@ const ProjectsBox = ({ contractId}) => {
           query = query.eq('contract_id', contractId);
         }
 
-        if (activeTab !== 'all') {
-          query = query.eq('project_status', activeTab);
-        }
+        
 
         const {data, error } = await query;
 
@@ -69,12 +62,6 @@ const ProjectsBox = ({ contractId}) => {
         } else {
           setProjects(data || []);
 
-          const counts = {
-            all: data.length,
-            active: data.filter(p => p.project_status === 'active').length,//TODO change ongoing to active in supabase
-            closed: data.filter(p => p.project_status === 'completed').length
-          };
-          setProjectCounts(counts);
         };
 
         setLoading(false);
@@ -84,40 +71,27 @@ const ProjectsBox = ({ contractId}) => {
           fetchProjects();
         } else {
           setProjects([]);
-          setProjectCounts({ all: 0,  active: 0, closed: 0 });
           setLoading(false);
         }
-      }, [contractId, activeTab]);
-
-     const handleTabChange = (tab) => {
-      setActiveTab(tab);
-     };
-
-     const filteredProjects = activeTab === 'all' 
-     ? projects 
-     : projects.filter(project => project.project_status === activeTab);
-//fetch contract name from contracts table for section header
+    }, [contractId]
+  );
 
   return (
 
     <div className="projects-card-content">
       <div className="projects-header">
-        <h2>Projects</h2>
-        {contractId && (
-          <div className="filter-indicator">
-            <span className="by-contract">for {contractName || 'this contract'}</span>
-          </div>
-        )}
+        <h3>{contractName} Projects</h3>
+        <h5>{clientName}</h5>
+        
       </div>
 
-      <ProjectTabs activeTab={activeTab} onTabChange={handleTabChange} projectCounts={projectCounts}/>
-
+     
       {loading ? (
         <div className="loading-indicator">Loading projects...</div>
       ): error? (
         <div className="error-message">{error}</div>
       ): (
-        <ProjectList projects={filteredProjects} />
+        <ProjectList projects={Array.isArray(projects) ? projects : []} />
       )}
     </div> 
 

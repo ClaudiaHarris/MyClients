@@ -80,17 +80,26 @@
 .projects-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .projects-table th {
-  background-color: var(--deep-blue);
-  color: var(--light-teal);
-  font-weight: 600;
+  background-color: var(--pastured-egg);
+  color: var(--dark-grey);
+  font-size: 0.8rem;
   text-align: left;
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-bottom: 2px solid var(--teal);
+  padding: var(--spacing-xs) var(--spacing-sm);
+
 }
+
+.projects-table th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.projects-table th:last-child {
+  border-top-right-radius: 8px;
+}
+
 
 .projects-table td {
   padding: var(--spacing-sm) var(--spacing-md);
@@ -107,19 +116,24 @@
   text-transform: uppercase;
 }
 
-.status-badge.pending {
-  background-color: var(--pending-color);
+.status-badge.upcoming {
+  background-color: var(--upcoming-color);
   color: var(--white);
   
 }
 
-.status-badge.active {
+.status-badge.in-progress {
   background-color: var(--active-color);
   color: var(--white);
 }
 
-.status-badge.closed {
-  background-color: var(--closed-color);
+.status-badge.completed {
+  background-color: var(--completed-color);
+  color: var(--white);
+}
+
+.status-badge.delayed {
+  background-color: var(--delayed-color);
   color: var(--white);
 }
 
