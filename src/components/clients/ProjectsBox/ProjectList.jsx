@@ -1,39 +1,8 @@
 // src/components/clients/ProjectsBox/ProjectList.jsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ProjectStatus from '../../../utils/ProjectStatus';
-import supabase from '../../../config/supabaseClient';
 
 const ProjectList = ({ projects }) => {
-  const [projectManagers, setProjectManagers] = useState({});
-
-  // Fetch all project managers once when component mounts
-  useEffect(() => {
-    const fetchProjectManagers = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('project_managers')
-          .select('project_manager_id, first_name, last_name');
-        
-        if (error) throw error;
-
-        // Create a map of project manager IDs to their details
-        const managersMap = {};
-        data?.forEach(manager => {
-          managersMap[manager.project_manager_id] = {
-            first_name: manager.first_name,
-            last_name: manager.last_name
-          };
-        });
-        
-        setProjectManagers(managersMap);
-      } catch (err) {
-        console.error('Error fetching project managers:', err);
-      }
-    };
-
-    fetchProjectManagers();
-  }, []);
-
   const ProjectRowItem = ({ projectItem }) => {
     // Get status safely
     let statusClass;
@@ -50,14 +19,6 @@ const ProjectList = ({ projects }) => {
     } catch (error) {
       displayName = 'Unknown';
     }
-
-    // Get project manager name from cache
-    const manager = projectItem.project_manager ? 
-      projectManagers[projectItem.project_manager] : null;
-    
-    const managerName = manager ? 
-      `${manager.first_name} ${manager.last_name}`.trim() : 
-      'No manager assigned';
     
     return (
       <tr>
@@ -68,7 +29,6 @@ const ProjectList = ({ projects }) => {
           </span>
         </td>
         <td>{projectItem.est_completion_date || 'No date'}</td>
-        <td>{managerName}</td>
       </tr>
     );
   };
@@ -82,10 +42,8 @@ const ProjectList = ({ projects }) => {
               <th>Project Name</th>
               <th>Status</th>
               <th>Due Date</th>
-              <th>Project Manager</th>
             </tr>
           </thead>
-          
           <tbody>
             {projects.map(project => (
               project && typeof project === 'object' ? (

@@ -2,7 +2,12 @@ import React from "react";
 import ClientScreen from "./pages/ClientScreen";
 
 function App() {
-  return <ClientScreen />;
+  return (
+    <div>
+      <ClientScreen />
+     
+    </div>
+  );
 }
 
-export default App; //TODO resolve conflict app.js and index.js
+export default App; 

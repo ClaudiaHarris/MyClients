@@ -4,6 +4,7 @@ import supabase from '../../../config/supabaseClient';
 import ProjectList from './ProjectList';
 import './ProjectsBox.css';
 
+
 const ProjectsBox = ({ contractId, clientName}) => {
   
   const [projects, setProjects] = useState([]);
@@ -11,11 +12,7 @@ const ProjectsBox = ({ contractId, clientName}) => {
   const [error, setError] = useState(null);
   const [contractName, setContractName] = useState('');
   
-  
- 
-
   useEffect(() => {
-
     const fetchContractName = async () => {
       if (!contractId) {
         setContractName('');
@@ -35,7 +32,6 @@ const ProjectsBox = ({ contractId, clientName}) => {
       }
     };
     
-
     fetchContractName();
   }, [contractId]);
 
@@ -52,8 +48,6 @@ const ProjectsBox = ({ contractId, clientName}) => {
           query = query.eq('contract_id', contractId);
         }
 
-        
-
         const {data, error } = await query;
 
         if (error) {
@@ -61,7 +55,6 @@ const ProjectsBox = ({ contractId, clientName}) => {
           setError(error.message);
         } else {
           setProjects(data || []);
-
         };
 
         setLoading(false);
@@ -76,16 +69,30 @@ const ProjectsBox = ({ contractId, clientName}) => {
     }, [contractId]
   );
 
-  return (
+  useEffect(() => {
+    const fetchAllManagers = async () => {
+      const { data, error } = await supabase
+        .from('project_managers')
+        .select('*');
+  
+      if (error) {
+        console.error('Error fetching managers:', error);
+      } else {
+        console.log('All project managers:', data);
+      }
+    };
+  
+    fetchAllManagers();
+  }, []);
 
+  return (
     <div className="projects-card-content">
       <div className="projects-header">
+       
         <h3>{contractName} Projects</h3>
         <h5>{clientName}</h5>
-        
       </div>
 
-     
       {loading ? (
         <div className="loading-indicator">Loading projects...</div>
       ): error? (
@@ -94,9 +101,7 @@ const ProjectsBox = ({ contractId, clientName}) => {
         <ProjectList projects={Array.isArray(projects) ? projects : []} />
       )}
     </div> 
-
   );
 };    
-
 
 export default ProjectsBox;
