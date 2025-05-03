@@ -21,7 +21,7 @@ const ClientScreen = () => {
   const fetchClients = async () => {
     const { data, error } = await supabase
       .from('clients')
-      .select();
+      .select('*, sales_reps(last_name)');
 
     if (error) {
       setFetchError('Could not fetch client');

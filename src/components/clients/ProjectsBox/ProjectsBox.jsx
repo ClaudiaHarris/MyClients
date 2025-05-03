@@ -39,50 +39,54 @@ const ProjectsBox = ({ contractId, clientName}) => {
     const fetchProjects = async () => {
       setLoading(true);
         
-        let query = supabase
+      try {
+        const { data, error } = await supabase
           .from('projects')
-          .select('*')
+          .select(`
+            project_id,
+            project_name,
+            project_status,
+            est_completion_date,
+            project_manager_id,
+            project_managers(first_name, last_name, email)
+          `)
           .eq('contract_id', contractId);
 
-        if (contractId) {
-          query = query.eq('contract_id', contractId);
-        }
-
-        const {data, error } = await query;
+        console.log('Projects with managers:', data);
 
         if (error) {
           console.error('Error fetching projects: ', error);
           setError(error.message);
         } else {
           setProjects(data || []);
-        };
-
-        setLoading(false);
-        };
-
-        if (contractId) {
-          fetchProjects();
-        } else {
-          setProjects([]);
-          setLoading(false);
         }
-    }, [contractId]
+      } catch (err) {
+        console.error('Error:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (contractId) {
+      fetchProjects();
+    } else {
+      setProjects([]);
+      setLoading(false);
+    }
+  }, [contractId]
   );
 
   useEffect(() => {
-    const fetchAllManagers = async () => {
+    const testManagerAccess = async () => {
       const { data, error } = await supabase
         .from('project_managers')
         .select('*');
-  
-      if (error) {
-        console.error('Error fetching managers:', error);
-      } else {
-        console.log('All project managers:', data);
-      }
+      
+      console.log('Testing project_managers access:', { data, error });
     };
-  
-    fetchAllManagers();
+    
+    testManagerAccess();
   }, []);
 
   return (

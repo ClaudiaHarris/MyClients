@@ -103,16 +103,15 @@
 
 /* Adjust column widths */
 .client-table th:nth-child(1),
-.client-table td:nth-child(1) {width: 35%; }
+.client-table td:nth-child(1) { width: 30%; }
 .client-table th:nth-child(2),
-.client-table td:nth-child(2) { width: 25%; }
+.client-table td:nth-child(2) { width: 20%; }
 .client-table th:nth-child(3),
-.client-table td:nth-child(3) { width: 25%; }
+.client-table td:nth-child(3) { width: 15%; }
 .client-table th:nth-child(4),
-.client-table td:nth-child(4){
-  width: 25%;
-  overflow: visible;  
-}
+.client-table td:nth-child(4) { width: 20%; }
+.client-table th:nth-child(5),
+.client-table td:nth-child(5) { width: 15%; }
 
 
 

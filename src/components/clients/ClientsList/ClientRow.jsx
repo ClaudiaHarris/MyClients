@@ -13,6 +13,7 @@ const ClientRow = ({ client, onSelect, onEdit, onDelete }) => {
           {client.lifecycle}
         </span>
       </td>
+      <td>{client.sales_reps?.last_name || 'No Rep Assigned'}</td>
       <td>
         <ClientRowActions 
           onEdit={e => {

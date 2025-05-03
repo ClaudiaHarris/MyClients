@@ -29,6 +29,13 @@ const ProjectList = ({ projects }) => {
           </span>
         </td>
         <td>{projectItem.est_completion_date || 'No date'}</td>
+        <td>
+          {projectItem.project_managers ? (
+            <a href={`mailto:${projectItem.project_managers.email}`}>
+              {`${projectItem.project_managers.first_name} ${projectItem.project_managers.last_name}`}
+            </a>
+          ) : 'No manager'}
+        </td>
       </tr>
     );
   };
@@ -42,13 +49,14 @@ const ProjectList = ({ projects }) => {
               <th>Project Name</th>
               <th>Status</th>
               <th>Due Date</th>
+              <th>Project Manager</th>
             </tr>
           </thead>
           <tbody>
             {projects.map(project => (
               project && typeof project === 'object' ? (
                 <ProjectRowItem 
-                  key={project.project_id || 'unknown'} 
+                  key={project.project_id || `${project.project_name}-${Math.random()}`} 
                   projectItem={project} 
                 />
               ) : null

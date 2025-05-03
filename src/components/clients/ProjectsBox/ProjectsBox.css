@@ -107,6 +107,17 @@
   color: var(--dark-grey);
 }
 
+.projects-table a {
+  color: var(--teal);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.projects-table a:hover {
+  color: var(--light-teal);
+  text-decoration: underline;
+}
+
 .status-badge {
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-sm);
