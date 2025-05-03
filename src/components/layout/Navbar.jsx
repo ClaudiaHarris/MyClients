@@ -1,10 +1,18 @@
 //TODO import CSS?
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import {useAuth} from '../../contexts/AuthContext';
 import './Navbar.css'; // Assuming you have a CSS file for styling
 
 const Navbar = () => {
+
+  const {signOut} = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
+
   return (
     <nav className="navbar">
       
@@ -20,6 +28,9 @@ const Navbar = () => {
         </button>
         <button className="settings">
           <FontAwesomeIcon icon={faCog} className="settings-icon"/> 
+        </button>
+        <button className="logout-button" onClick={handleSignOut}>
+          <FontAwesomeIcon icon={faSignOutAlt} /> Sign Out
         </button>
         <div className="header-logo">
           <img src="/globaltech-logo-light.svg" alt="GlobalTech Logo" className="logo" />

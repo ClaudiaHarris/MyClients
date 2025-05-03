@@ -1,0 +1,105 @@
+.signin-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--deep-blue);
+}
+
+.signin-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-lg);
+}
+
+.signin-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.signin-header img.logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: var(--spacing-md);
+}
+
+.signin-header h1 {
+  color: var(--light-teal);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.signin-header h2 {
+  color: var(--white);
+  font-size: 1.2rem;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-group label {
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+.form-control {
+  padding: var(--spacing-sm);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--white);
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(41, 126, 111, 0.3);
+}
+
+.form-actions {
+  margin-top: var(--spacing-md);
+}
+
+.form-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  text-align: center;
+}
+
+.text-link {
+  background: none;
+  border: none;
+  color: var(--light-teal);
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.text-link:hover {
+  color: var(--pastered-egg);
+}
+
+.error-message {
+  background-color: rgba(180, 54, 42, 0.2);
+  border-left: 3px solid var(--rustic-red);
+  color: #fff;
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  font-size: 0.9rem;
+}

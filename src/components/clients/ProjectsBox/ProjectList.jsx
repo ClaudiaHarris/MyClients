@@ -30,11 +30,13 @@ const ProjectList = ({ projects }) => {
         </td>
         <td>{projectItem.est_completion_date || 'No date'}</td>
         <td>
+         
           {projectItem.project_managers ? (
             <a href={`mailto:${projectItem.project_managers.email}`}>
               {`${projectItem.project_managers.first_name} ${projectItem.project_managers.last_name}`}
             </a>
           ) : 'No manager'}
+        
         </td>
       </tr>
     );

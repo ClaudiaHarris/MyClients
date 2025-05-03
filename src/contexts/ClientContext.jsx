@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { getClients, updateClient, deleteClient } from '../services/clientService';
-
+//TODO is this still needed?
 // Create the context
 export const ClientContext = createContext();
 
