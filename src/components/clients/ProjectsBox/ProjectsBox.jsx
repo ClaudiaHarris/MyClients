@@ -12,6 +12,11 @@ const ProjectsBox = ({ contractId, clientName}) => {
   const [error, setError] = useState(null);
   const [contractName, setContractName] = useState('');
   
+  // Reset projects when client changes
+  useEffect(() => {
+    setProjects([]);
+  }, [clientName]);
+
   useEffect(() => {
     const fetchContractName = async () => {
       if (!contractId) {

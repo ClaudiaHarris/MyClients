@@ -6,28 +6,31 @@ import {useAuth} from '../../contexts/AuthContext';
 import './Navbar.css'; // Assuming you have a CSS file for styling
 
 const Navbar = () => {
-
   const {signOut} = useAuth();
 
   const handleSignOut = async () => {
     await signOut();
   };
 
+  const handleNavClick = (destination) => {
+    alert(`In a real CRM application, you would now navigate to ${destination}`);
+  };
+
   return (
     <nav className="navbar">
       
       <ul className="nav-button-links">
-        <li><button className="nav-button-link">Dashboard</button></li>
+        <li><button className="nav-button-link" onClick={() => handleNavClick('Dashboard')}>Dashboard</button></li>
         <li><button className="nav-button-link active">Clients</button></li>
-        <li><button className="nav-button-link">Projects</button></li>
-        <li><button className="nav-button-link">Contracts</button></li>
+        <li><button className="nav-button-link" onClick={() => handleNavClick('Projects')}>Projects</button></li>
+        <li><button className="nav-button-link" onClick={() => handleNavClick('Contracts')}>Contracts</button></li>
       </ul>
       <div className="nav-right">
         <button className="user-profile">
-          <FontAwesomeIcon icon={faUser} className="user-icon"/> 
+          <FontAwesomeIcon icon={faUser} className="user-icon" onClick={() => handleNavClick('User Profile')}/> 
         </button>
         <button className="settings">
-          <FontAwesomeIcon icon={faCog} className="settings-icon"/> 
+          <FontAwesomeIcon icon={faCog} className="settings-icon" onClick={() => handleNavClick('Settings')}/> 
         </button>
         <button className="logout-button" onClick={handleSignOut}>
           <FontAwesomeIcon icon={faSignOutAlt} /> Sign Out

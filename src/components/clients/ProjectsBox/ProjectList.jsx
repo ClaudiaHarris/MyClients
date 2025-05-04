@@ -66,7 +66,7 @@ const ProjectList = ({ projects }) => {
           </tbody>
         </table>
       ) : (
-        <p className="no-projects-message">No projects available</p>
+        <p className="no-projects-message">Select a contract to see Projects</p>
       )}
     </div>
   );

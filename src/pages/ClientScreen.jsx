@@ -14,9 +14,16 @@ const ClientScreen = () => {
   const [selectedClient, setSelectedClient] = useState(null);
   const [searchValue, setSearchValue] = useState('');
   const [selectedContract, setSelectedContract] = useState(null);
+  const [showProjects, setShowProjects] = useState(false);
   
   const [fetchError, setFetchError] = useState(null);
   const [clients, setClients] = useState([]);
+
+  // Reset project visibility when client changes
+  useEffect(() => {
+    setShowProjects(false);
+    setSelectedContract(null);
+  }, [selectedClient]);
 
   const fetchClients = async () => {
     const { data, error } = await supabase
@@ -85,10 +92,7 @@ const ClientScreen = () => {
 
   return (
     <MainLayout pageTitle="My Clients"> 
-    
-
       <div className="client-screen-container">
-
         <div className="client-list-container">
           <ClientListActions 
             onAddNew={() => setIsAddModalOpen(true)}
@@ -97,21 +101,24 @@ const ClientScreen = () => {
           />
           <ClientList 
             clients={filteredClients}
-            onClientSelect={setSelectedClient}
+            onClientSelect={(client) => {
+              setSelectedClient(client);
+              // Show projects after a small delay to allow the transition
+              setTimeout(() => setShowProjects(true), 100);
+            }}
             onAddNew={() => setIsAddModalOpen(true)}
             onEdit={handleEditClient} 
             onDelete={handleDeleteClient}
           />
         </div>
         
-        
         <div className="client-details-container">
           {selectedClient ? (
             <>
               <ClientCard 
-              client={selectedClient}
-              onContractSelect={handleContractSelect}
-              selectedContract={selectedContract} />
+                client={selectedClient}
+                onContractSelect={handleContractSelect}
+                selectedContract={selectedContract} />
             </>
           ) : (
             <div className="no-selection-placeholder">
@@ -120,10 +127,8 @@ const ClientScreen = () => {
           )}
         </div>
 
-       
-
         <div className="projects-container">
-          {selectedClient ? (
+          {selectedClient && showProjects ? (
             <>
               <ProjectsBox 
                 clientId={selectedClient.client_id}
@@ -134,12 +139,10 @@ const ClientScreen = () => {
             </>
           ) : (
             <div className="no-selection-placeholder">
-              Select a client to view projects
+              Select a contract to view projects
             </div>
           )}
         </div>
-
-
       </div>
       
       <AddClientModal 
