@@ -73,10 +73,7 @@ const ClientList = ({ clients, onClientSelect, onAddNew, onEdit, onDelete }) => 
                 Lifecycle
                 {sortField === 'lifecycle' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
               </th>
-              <th onClick={() => handleSort('sales_reps.last_name')}>
-                Sales Rep
-                {sortField === 'sales_reps.last_name' && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
-              </th>
+             
               <th>Actions</th>
             </tr>
           </thead>
