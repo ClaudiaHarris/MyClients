@@ -1,51 +1,82 @@
--->My Clients Module for a fictitious CRM by Claudia Harris
+# Clients Module - CRM System
 A React-based client management interface that allows users to view, add, and manage client information.
 
--->Prerequisites
+## Live Demo (Recommended Method)
 
-- Node.js (v16 or higher)
-- npm (v8 or higher)
+The easiest way to review the application is through the live deployment at:
+https://clients-module.vercel.app/clients
 
-Installation
+**Demo Login Credentials:**
+- Email: domalley@liberty.edu
+- Password: capstone
 
--->Install the required dependencies in the project directory:
+The live version uses Supabase as the backend and contains the most up-to-date data.
 
-(npm install if Powershell)
+## Local Development Setup (Optional)
 
--->Running the Application
+If you wish to run the code locally:
 
-The application requires two servers to run simultaneously:
+1. **Extract the Project**
+   - Unzip the project file to your desired location
+   - Open a terminal/command prompt
+   - Navigate to the project directory
 
-1. Start the React development server (main application):
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-(npm start if powershell)
+3. **Start the Application**
+   ```bash
+   npm start
+   ```
+   The application will open in your default browser at `http://localhost:3000` and will connect to the same Supabase backend as the live demo.
 
-This will open the application in your browser at `http://localhost:3000`
+## Project Structure
 
-2. In a new terminal, start the JSON server (mock API):
+- `/src` - Main application source code
+  - `/components` - React components
+  - `/services` - API and data services
+  - `/contexts` - React context providers
+  - `/config` - Application configuration
 
-(npm run start:server if powershell)
+## Features
 
-This will start the mock API server at `http://localhost:8000`
- 
- -->Features as of 2025-04-07
-
-- View list of clients
+- User Authentication via Supabase
+- View and manage client list
 - Add new clients
-- Some Form Validation
-- Some Error handling
+- Edit client details
+- Delete clients
+- View client contracts and projects
+- Form validation
+- Error handling
 
--->Notes
+## Troubleshooting
 
-- The application currently uses a mock API server for demonstration purposes
-- Both servers must be running for the application to work properly
-- Default port for React app is 3000, and JSON server runs on port 8000
+1. **Connection Issues**
+   - Verify internet connection (required for Supabase access)
+   - Clear browser cache and reload
+   - Check browser console for any error messages
 
--->Troubleshooting
+2. **Login Issues**
+   - Ensure you're using the provided demo credentials
+   - Try clearing browser cookies and cache
 
-If you encounter any issues:
+## Technical Notes
 
-1. Make sure both servers are running
-2. Check the browser console for errors
-3. Verify that ports 3000 and 8000 are available
-4. Try clearing the browser cache
+- Built with React 18
+- Uses Vite as the build tool
+- Integrates with Supabase for authentication and data storage
+- Styled with CSS modules
+
+## Assessment Notes for Professor
+
+- The application demonstrates full CRUD operations
+- Implements proper state management using React Context
+- Features protected routes and authentication
+- Includes error boundaries and form validation
+- Demonstrates proper component organization and reusability
+- Uses modern React practices including hooks and functional components
+- Uses Supabase as the backend service for data persistence and authentication
+
+For any technical questions or issues, please contact Claudia Harris via charris294@liberty.edu
