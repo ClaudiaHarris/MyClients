@@ -60,6 +60,13 @@
   color: var(--dark-grey);
 }
 
+.modal .form-group label {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark-grey);
+}
+
 .modal .form-control:focus {
   border-color: var(--lead-color);
   outline: none;
