@@ -69,6 +69,13 @@
   box-shadow: 0 0 0 2px rgba(41, 126, 111, 0.3);
 }
 
+.form-control:disabled {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
 .form-actions {
   margin-top: var(--spacing-md);
 }
@@ -99,7 +106,20 @@
   background-color: rgba(180, 54, 42, 0.2);
   border-left: 3px solid var(--rustic-red);
   color: #fff;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
   margin-bottom: var(--spacing-md);
   font-size: 0.9rem;
+  border-radius: 4px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
